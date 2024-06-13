@@ -10,8 +10,7 @@ function App() {
     <> 
     <Routes>
       <Route path="/" element={<LoginAuth/>}></Route>
-      <Route path="/TeacherLogin" element={<TeacherLogin/>}></Route>
-      <Route path="/StudentLogin" element={<StudentLogin/>}></Route>
+      
   
     </Routes>
   
