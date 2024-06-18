@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Student = () => {
+const StudentDashboard = () => {
   return (
-    <div>Student</div>
+    <div>StudentDashboard</div>
   )
 }
 
-export default Student
+export default StudentDashboard
