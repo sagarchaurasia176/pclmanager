@@ -15,5 +15,4 @@ exports.StudentSchema = mongoose.Schema({
   },
 });
 
-
-module.exports = mongoose.model('StudentSchema' , StudentSchema);
+module.exports = mongoose.model("StudentSchema", StudentSchema);
