@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-exports.StudentSchema = mongoose.Schema({
+const StudentSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -9,6 +9,7 @@ exports.StudentSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true,
+    max:10,
   },
   Branch: {
     type: String,
