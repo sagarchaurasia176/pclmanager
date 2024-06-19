@@ -13,3 +13,6 @@ require("./config/DbConnection").userAuthDbConnectionSetup();
 // routes import and mount here
 // const routes = require("./routes/MainManagerRoutes");
 // app.use("/mainManagerRoutes", routes);
+app.get("/", (req, res) => {
+  res.send(` Backend server running at ${PORT}`);
+});
