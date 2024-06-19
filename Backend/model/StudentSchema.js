@@ -8,10 +8,12 @@ exports.StudentSchema = mongoose.Schema({
   Usn: {
     type: String,
     required: true,
+    trim: true,
   },
   Branch: {
     type: String,
     required: true,
+    trim: true,
   },
 });
 

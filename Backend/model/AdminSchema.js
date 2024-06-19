@@ -6,11 +6,14 @@ exports.AdminSchema = mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    trim:true,
   },
   name: {
     type: String,
     required: true,
     max: 100,
+    trim:true,
+
   },
   active: {
     type: Boolean,
