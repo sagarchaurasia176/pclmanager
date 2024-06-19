@@ -10,6 +10,7 @@ exports.GuideSchema = mongoose.Schema({
     type: String,
     required: true,
     max: 100,
+    
   },
 });
 module.exports = mongoose.model("GuideSchema", GuideSchema);

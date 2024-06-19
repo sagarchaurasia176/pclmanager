@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 // Admin Schema apply
 exports.AdminSchema = mongoose.Schema({
   AdminId: {
@@ -11,7 +12,10 @@ exports.AdminSchema = mongoose.Schema({
     required: true,
     max: 100,
   },
+  active: {
+    type: Boolean,
+    required: true,
+  },
 });
 // exports the model here so we get
-module.exports = mongoose.model('AdminSchema', AdminSchema)
-
+module.exports = mongoose.model("AdminSchema", AdminSchema);
