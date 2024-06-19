@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import { createSlice } from "@reduxjs/toolkit";
 
-const LoginSlice = () => {
-  return (
-    <div></div>
-  )
-}
+// initial state apply here
+const initialState = {
+  loading: false,
+};
 
-export default LoginSlice
+export const LoginSlice = createSlice({
+  // name , initialstat
+  name: "counter",
+  initialState,
+  reducers: {
+    // write the states
+  },
+});
+
+export default LoginSlice;
