@@ -9,6 +9,7 @@ import StudentDashboard from "./Dashboard/Student/StudentDashboard";
 function App() {
   return (
     <>
+    {/* this is the main controller page ,  */}
       <Routes>
         <Route path="/" element={<LoginAuth />}></Route>
         <Route path="/admin" element={<MainAdminDashboard />}></Route>
