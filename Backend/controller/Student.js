@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 // schema creation apply here so we get
 const StudentSchema = require("../model/StudentSchema");
 // student controller apply here so we get
-exports.StudentForm = async (req, res) => {
+exports.Student = async (req, res) => {
   try {
     // destructure the studetn schema
     const { name, Usn, Branch } = req.body;
@@ -36,6 +36,7 @@ exports.StudentForm = async (req, res) => {
    
     res.status(200).json({
       Success: true,
+      data:StudentData,
       message: "Your Data is Saved Successfully ",
     });
 
