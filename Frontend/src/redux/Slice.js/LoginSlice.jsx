@@ -2,7 +2,9 @@ import React from 'react'
 
 const LoginSlice = () => {
   return (
-    <div></div>
+    <div>
+      <p>login auth</p>
+    </div>
   )
 }
 
