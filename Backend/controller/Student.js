@@ -6,7 +6,7 @@ exports.Student = async (req, res) => {
   try {
     // destructure the studetn schema
     const { name, Usn, Branch } = req.body;
-
+    const MatchUsnCode = '2/BT/N/0/C/btl/c/22/';
     // find by the name here => its check that the name is exist or not
     const existingStudentName = await StudentSchema.findOne({ name });
     if (existingStudentName) {
@@ -19,7 +19,7 @@ exports.Student = async (req, res) => {
     // let's check the USN validataion first here
     let StudentUsnChecker;
     try {
-      StudentUsnChecker = await bcrypt.hash(Usn, 10);
+      StudentUsnChecker = await bcrypt.hash( Usn, 10);
     } catch {
       return res.status(500).json({
         Success: false,
@@ -33,16 +33,14 @@ exports.Student = async (req, res) => {
       Usn: StudentUsnChecker,
       Branch,
     });
-   
+
     res.status(200).json({
       Success: true,
-      data:StudentData,
+      data: StudentData,
       message: "Your Data is Saved Successfully ",
     });
-
-
   } catch {
-    res.status(500).json({
+    return res.status(500).json({
       Success: false,
       message: "Your Data is not saved talk to admin",
     });

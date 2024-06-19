@@ -1,17 +1,18 @@
 const mongoose = require("mongoose");
 // Guide schema
-exports.GuideSchema = mongoose.Schema({
+const GuideSchema = mongoose.Schema({
   GuideId: {
     type: String,
     required: true,
     unique: true,
     trim:true,
+    max:20
 
   },
   name: {
     type: String,
     required: true,
-    max: 100,
+    max: 20,
     trim:true,
   },
   active: {
