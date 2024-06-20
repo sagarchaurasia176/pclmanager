@@ -1,0 +1,4 @@
+{/* Temporarily remove or comment out these lines */}
+      {/* {selectedItem === 'dashboard' && <Dashboard />} */}
+      {/* {selectedItem === 'sales' && <Team request />} */}
+      {/* {selectedItem === 'inventory' && <Guide Allocation />} */}

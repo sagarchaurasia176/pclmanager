@@ -1,20 +1,30 @@
-import { useState } from "react";
+// App.jsx
+
+import React from 'react';
 import "./App.css";
 import LoginAuth from "./auth/LoginAuth";
 import { Routes, Route } from "react-router-dom";
-import MainAdminDashboard from "./Dashboard/Admin/MainAdminDashboard";
 import GuideDashboard from "./Dashboard/Guide/GuideDashboard";
 import StudentDashboard from "./Dashboard/Student/StudentDashboard";
+import { Layout } from "./Dashboard/Admin/Layout"; // Import as named import
+
+function AdminDashboard() {
+  return (
+    <Layout>
+      {/* Include Sidebar and MainComponent here */}
+    </Layout>
+  );
+}
 
 function App() {
   return (
     <>
-    {/* this is the main controller page ,  */}
+      {/* This is the main controller page */}
       <Routes>
-        <Route path="/" element={<LoginAuth />}></Route>
-        <Route path="/admin" element={<MainAdminDashboard />}></Route>
-        <Route path="/guide" element={<GuideDashboard />}></Route>
-        <Route path="/Student" element={<StudentDashboard />}></Route>
+        <Route path="/" element={<LoginAuth />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/guide" element={<GuideDashboard />} />
+        <Route path="/Student" element={<StudentDashboard />} />
       </Routes>
     </>
   );
