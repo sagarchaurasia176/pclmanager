@@ -6,13 +6,11 @@ import LoginAuth from "./auth/LoginAuth";
 import { Routes, Route } from "react-router-dom";
 import GuideDashboard from "./Dashboard/Guide/GuideDashboard";
 import StudentDashboard from "./Dashboard/Student/StudentDashboard";
-import { Layout } from "./Dashboard/Admin/Layout"; // Import as named import
+import Layout from "./Dashboard/Admin/Layout"; // Import Layout component
 
 function AdminDashboard() {
   return (
-    <Layout>
-      {/* Include Sidebar and MainComponent here */}
-    </Layout>
+    <Layout />
   );
 }
 
@@ -24,7 +22,7 @@ function App() {
         <Route path="/" element={<LoginAuth />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/guide" element={<GuideDashboard />} />
-        <Route path="/Student" element={<StudentDashboard />} />
+        <Route path="/student" element={<StudentDashboard />} />
       </Routes>
     </>
   );

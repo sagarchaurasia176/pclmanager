@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+// MainComponent.jsx
+
+import React from 'react';
 import { Box, Typography } from '@mui/material';
+import Dashboard from './Dashboard';
+import GuideAllocation from './GuideAllocation';
+import TeamRequest from './TeamRequest';
 
-export function MainComponent() {
-  const [selectedItem, setSelectedItem] = useState('dashboard');
-
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
-  };
-
+function MainComponent({ selectedItem }) {
   return (
     <Box sx={{ p: 2 }}>
       <Typography variant="h5" component="h1">
         {selectedItem}
       </Typography>
-      
-      <div>Placeholder for content based on selectedItem</div>
+      {selectedItem === 'dashboard' && <Dashboard />}
+      {selectedItem === 'treq' && <TeamRequest />}
+      {selectedItem === 'GuideAllo' && <GuideAllocation />}
     </Box>
   );
 }

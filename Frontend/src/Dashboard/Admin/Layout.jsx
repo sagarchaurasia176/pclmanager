@@ -1,28 +1,47 @@
 // Layout.jsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import { CssBaseline, Drawer, Box, Toolbar } from '@mui/material';
 import Sidebar from './Sidebar';
 import MainComponent from './MainComponent';
 
-export function Layout() {
+const drawerWidth = 240;
+
+const layoutStyle = {
+  root: {
+    display: 'flex',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  main: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+    marginLeft: drawerWidth,
+  },
+};
+
+function Layout() {
+  const [selectedItem, setSelectedItem] = useState('dashboard'); // Ensure useState is imported correctly
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box style={layoutStyle.root}>
       <CssBaseline />
-      <Drawer variant="permanent" sx={{ width: 240, flexShrink: 0 }}>
-        <Sidebar />
+      <Drawer variant="permanent" style={layoutStyle.drawer}>
+        <Sidebar selectedItem={selectedItem} onItemClick={handleItemClick} />
       </Drawer>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          height: '100vh',
-          overflow: 'auto',
-        }}
-      >
+      <Box component="main" style={layoutStyle.main}>
         <Toolbar />
-        <MainComponent />
+        <MainComponent selectedItem={selectedItem} />
       </Box>
     </Box>
   );
 }
+
+export default Layout;

@@ -1,22 +1,28 @@
-import React from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material"; // Added ListItemButton import
+// Sidebar.jsx
 
-export function Sidebar() {
+import React from 'react';
+import { List, ListItem, ListItemButton, ListItemText } from '@mui/material';
+
+function Sidebar({ selectedItem, onItemClick }) {
+  const handleItemClick = (item) => {
+    onItemClick(item);
+  };
+
   return (
     <List>
       <ListItem key="dashboard" disablePadding>
-        <ListItemButton>
-          <ListItemText primary="Admin Dashboard" />
+        <ListItemButton onClick={() => handleItemClick('dashboard')} selected={selectedItem === 'dashboard'}>
+          <ListItemText primary="Dashboard" />
         </ListItemButton>
       </ListItem>
-      <ListItem key="Treq" disablePadding>
-        <ListItemButton>
-          <ListItemText primary="Team Requests" />
+      <ListItem key="treq" disablePadding>
+        <ListItemButton onClick={() => handleItemClick('treq')} selected={selectedItem === 'treq'}>
+          <ListItemText primary="TeamRequest" />
         </ListItemButton>
       </ListItem>
       <ListItem key="GuideAllo" disablePadding>
-        <ListItemButton>
-          <ListItemText primary="Guide Allocation" />
+        <ListItemButton onClick={() => handleItemClick('GuideAllo')} selected={selectedItem === 'GuideAllo'}>
+          <ListItemText primary="GuideAllocation" />
         </ListItemButton>
       </ListItem>
     </List>
