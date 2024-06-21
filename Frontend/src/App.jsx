@@ -5,8 +5,10 @@ import { Routes, Route } from "react-router-dom";
 import MainAdminDashboard from "./Dashboard/Admin/MainAdminDashboard";
 import GuideDashboard from "./Dashboard/Guide/GuideDashboard";
 import StudentDashboard from "./Dashboard/Student/StudentDashboard";
-
+import RegisterStudentForm from "./auth/RegisterStudentForm";
+import LocomotiveScroll from "locomotive-scroll";
 function App() {
+  const locomotiveScroll = new LocomotiveScroll();
   return (
     <>
       <Routes>
@@ -14,6 +16,10 @@ function App() {
         <Route path="/admin" element={<MainAdminDashboard />}></Route>
         <Route path="/guide" element={<GuideDashboard />}></Route>
         <Route path="/Student" element={<StudentDashboard />}></Route>
+        <Route
+          path="/RegisterAccount"
+          element={<RegisterStudentForm />}
+        ></Route>
       </Routes>
     </>
   );
