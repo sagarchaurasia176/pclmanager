@@ -6,9 +6,7 @@ import MainAdminDashboard from "./Dashboard/Admin/MainAdminDashboard";
 import GuideDashboard from "./Dashboard/Guide/GuideDashboard";
 import StudentDashboard from "./Dashboard/Student/StudentDashboard";
 import RegisterStudentForm from "./auth/RegisterStudentForm";
-import LocomotiveScroll from "locomotive-scroll";
 function App() {
-  const locomotiveScroll = new LocomotiveScroll();
   return (
     <>
       <Routes>
