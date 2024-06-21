@@ -1,8 +1,16 @@
 import React from "react";
 import { BranchName } from "../Api/BranchName";
-
+import { MdDoubleArrow } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 // two col fill student -> usn and dob
 const StudentLogin = () => {
+  // const navigate to the next page
+  const NavigateToRegisterPage = useNavigate();
+
+  // register Handler apply here so we get
+  const RegisterHandler = () => {
+    NavigateToRegisterPage("/RegisterAccount");
+  };
 
   return (
     <div>
@@ -34,7 +42,7 @@ const StudentLogin = () => {
         </select>
 
         <br></br>
-        <button class="px-6  mt-12 py-2 text-sm w-full font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+        <button className="p-3  mt-12  text-sm w-full font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
           Login
         </button>
         <br></br>
@@ -42,8 +50,14 @@ const StudentLogin = () => {
 
         {/* button for code  */}
 
-        <button  className="px-6  mt-3 py-2 text-sm w-full font-medium tracking-wide  capitalize transition-colors duration-300 transform   bg-slate-400   text-slate-800 animate-pulse  shadow-lg rounded-lg hover:bg-orange-100 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-          Enter PCL-Code
+        <button
+          onClick={() => RegisterHandler()}
+          className="p-3  cursor-pointer mt-3 text-center w-full justify-center font-medium flex
+         tracking-wide  capitalize transition-colors 
+              text-white shadow-lg rounded-lg bg-slate-900 "
+        >
+          Register New Account
+          <MdDoubleArrow className="  animate-bounce cursor-pointer  mt-1 sm:ml-3 sm:mt-1  text-white" />
         </button>
       </form>
     </div>
