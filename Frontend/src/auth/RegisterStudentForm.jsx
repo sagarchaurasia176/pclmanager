@@ -138,7 +138,7 @@ const RegisterStudentForm = () => {
               <br></br>
 
               <div className=" lg:flex sm:block lg:flex-col-1 lg:justify-between ">
-                <button className="flex items-center justify-between  px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-slate-800 rounded-lg focus:outline-none focus:ring  focus:ring-opacity-50">
+                <button  className="flex items-center justify-between  px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-slate-800 rounded-lg focus:outline-none focus:ring  focus:ring-opacity-50">
                   <span className=" ">Click To Register </span>
 
                   <svg
@@ -157,7 +157,7 @@ const RegisterStudentForm = () => {
                 <br />
                 <div>
                   <button
-                    onClick={LoginPageHandler}
+                    onClick={()=>LoginPageHandler()}
                     className="flex text-center items-center justify-between  bg-white px-6 py-3 
                 text-sm tracking-wide text-black capitalize transition-colors duration-300 
                 transform rounded-lg focus:outline-none focus:ring  focus:ring-opacity-50"
