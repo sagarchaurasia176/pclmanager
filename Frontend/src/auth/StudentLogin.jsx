@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const StudentLogin = () => {
   // const navigate to the next page
   const NavigateToRegisterPage = useNavigate();
-
   // register Handler apply here so we get
   const RegisterHandler = () => {
     NavigateToRegisterPage("/RegisterAccount");
@@ -50,15 +49,16 @@ const StudentLogin = () => {
 
         {/* button for code  */}
 
-        <button
-          onClick={() => RegisterHandler()}
-          className="p-3  cursor-pointer mt-3 text-center w-full justify-center font-medium flex
-         tracking-wide  capitalize transition-colors 
+          <div className="  cursor-pointer ">
+          <button onClick={() => RegisterHandler()}
+          className="p-3   mt-3 flex text-center w-full justify-center font-medium 
               text-white shadow-lg rounded-lg bg-slate-900 "
         >
           Register New Account
-          <MdDoubleArrow className="  animate-bounce cursor-pointer  mt-1 sm:ml-3 sm:mt-1  text-white" />
+          <MdDoubleArrow className="  animate-bounce  mt-1 sm:ml-3 sm:mt-1  text-white" />
         </button>
+          </div>
+     
       </form>
     </div>
   );
