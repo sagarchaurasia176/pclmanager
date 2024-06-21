@@ -3,10 +3,7 @@ import StudentLogin from "./StudentLogin";
 import TeacherLogin from "./TeacherLogin";
 import toast from "react-hot-toast";
 import ShapeDivider from "../Shape/ShapeDivider";
-// import { MdDoubleArrow } from "react-icons/md";
-// import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
-// import StudentLogin from "./StudentLogin";
-
+import logo from "../img/Logo.png";
 const LoginAuth = () => {
   const [AccountType, setAccountType] = useState("Student");
 
@@ -21,20 +18,14 @@ const LoginAuth = () => {
   return (
     <div>
       <div
-        className="w-full max-w-sm p-6 m-auto  mt-20  mx-auto
+        className="w-full max-w-sm p-6 m-auto  sm:mt-0  lg:mt-11  mx-auto
        bg-white rounded-lg shadow-md dark:bg-gray-800"
       >
-        <div className="flex p-4 justify-center mx-auto">
-          <img
-            className="w-auto h-7 sm:h-8"
-            src="https://merakiui.com/images/logo.svg"
-            alt=""
-          />
+        <div className="flex  justify-center mx-auto">
+          <img className=" w-[10rem]" src={logo} alt="" />
         </div>
 
         <div className=" flex justify-center space-x-4 ">
-       
-
           {/* student login page  */}
           <button
             className=" hover:bg-slate-400 hover:transition-all hover:duration-150 hover:text-black
@@ -56,8 +47,8 @@ const LoginAuth = () => {
             PCL-Guide
           </button>
 
-             {/* student login page  */}
-             <button
+          {/* student login page  */}
+          <button
             className="
              hover:bg-slate-400 hover:transition-all hover:duration-150 hover:text-black
               *:
@@ -67,7 +58,6 @@ const LoginAuth = () => {
           >
             Admin
           </button>
-        
         </div>
 
         {/* Conditional rendering based on accountType */}
