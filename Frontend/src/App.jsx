@@ -1,29 +1,30 @@
 // App.jsx
 
-import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import LoginAuth from './auth/LoginAuth';
-import AdminDashboard from './Dashboard/Admin/AdminDashboard'; // Import AdminDashboard component
-import GuideAllocation from './Dashboard/Admin/GuideAllocation'; // Import GuideAllocation component
-import Sidebar from './Dashboard/Admin/Sidebar'; // Import Sidebar component
-import './App.css'; // Import your CSS file if needed
-
+import React from "react";
+import "./App.css";
+import LoginAuth from "./auth/LoginAuth";
+import { Routes, Route } from "react-router-dom";
+import GuideDashboard from "./Dashboard/Guide/GuideDashboard";
+import MainAdmin from "./Dashboard/Admin/AdminDashboard";
+import StudentDashboard from "./Dashboard/Student/StudentDashboard";
+import StudentLogin from "./auth/StudentLogin";
+import RegisterStudentForm from "./auth/RegisterStudentForm";
 function App() {
-  const location = useLocation();
-  const isAdminPage = location.pathname.startsWith('/admin'); // Check if on admin page
-
   return (
-    <div className="app">
-      {isAdminPage && <Sidebar />} {/* Render Sidebar only for admin page */}
-
-      <div className="main-content">
-        <Routes>
-          <Route path="/" element={<LoginAuth />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/guide-allocation" element={<GuideAllocation />} />
-        </Routes>
-      </div>
-    </div>
+    <>
+      {/* This is the main controller page */}
+      <Routes>
+        <Route path="/" element={<LoginAuth />}></Route>
+        <Route path="/admin" element={<MainAdmin />}></Route>
+        <Route path="/guide" element={<GuideDashboard />}></Route>
+        <Route path="/Student" element={<StudentDashboard />}></Route>
+        <Route
+          path="/RegisterAccount"
+          element={<RegisterStudentForm />}
+        ></Route>
+        {/* Register Accounts*/}
+      </Routes>
+    </>
   );
 }
 

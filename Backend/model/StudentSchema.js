@@ -9,7 +9,7 @@ const StudentSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    max:10,
+    max: 10,
   },
   Branch: {
     type: String,
