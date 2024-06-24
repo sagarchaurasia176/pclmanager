@@ -14,7 +14,7 @@ const BatchYearInputField = () => {
     return years;
   };
   const currentYear = new Date().getFullYear();
-  const years = generateYears(2000, currentYear);
+  const years = generateYears(2020, currentYear);
 
   return (
     <div>

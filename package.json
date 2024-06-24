@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@mui/material": "^5.15.20",
-    "node": "^22.3.0"
-  }
-}
