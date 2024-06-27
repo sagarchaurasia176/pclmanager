@@ -1,32 +1,32 @@
-version: '3.8'
-services:
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_DB: PCL_MS
-      POSTGRES_USER: PCL
-      POSTGRES_PASSWORD: 123
-    volumes:
-      - D:\pclmanager\pclmanager\Backend\docker-data:/var/lib/postgresql/data
-    # ports:
-    #   - 5432:5432 # make sure you don't have another container running on 5432
+# version: '3.8'
+# services:
+#   db:
+#     image: postgres
+#     restart: always
+#     environment:
+#       POSTGRES_DB: PCL_MS
+#       POSTGRES_USER: PCL
+#       POSTGRES_PASSWORD: 123
+#     volumes:
+#       - D:\pclmanager\pclmanager\Backend\docker-data:/var/lib/postgresql/data
+#     # ports:
+#     #   - 5432:5432 # make sure you don't have another container running on 5432
 
-  # admin dashboard
-  pgadmin:
-    image: elestio/pgadmin
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: root
-      PGADMIN_LISTEN_PORT: 5050
-    ports:
-      - 5050
+#   # admin dashboard
+#   pgadmin:
+#     image: elestio/pgadmin
+#     restart: always
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#       PGADMIN_DEFAULT_PASSWORD: root
+#       PGADMIN_LISTEN_PORT: 5050
+#     ports:
+#       - 5050
  
-  # adminer db
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+#   # adminer db
+#   adminer:
+#     image: adminer
+#     restart: always
+#     ports:
+#       - 8080:8080
   
