@@ -1,6 +1,5 @@
 import React from "react";
 import BatchYearInputField from "../../Components/BatchYearInputField";
-import SemesterYearInput from "../../Components/SemesterYearInput";
 import BranchNamesBox from "../../Components/BranchNamesBox";
 const LeaderRegisterForm = () => {
   return (
