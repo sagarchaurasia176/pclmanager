@@ -9,8 +9,6 @@ services:
       POSTGRES_PASSWORD: 123
     volumes:
       - D:\pclmanager\pclmanager\Backend\docker-data:/var/lib/postgresql/data
-    # ports:
-    #   - 5432:5432 # make sure you don't have another container running on 5432
 
   # admin dashboard
   pgadmin:
@@ -22,11 +20,10 @@ services:
       PGADMIN_LISTEN_PORT: 5050
     ports:
       - 5050
- 
+
   # adminer db
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
-  

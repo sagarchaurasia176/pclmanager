@@ -3,7 +3,7 @@ import PCL from "../../img/PCL.png";
 import LeaderRegisterForm from "./LeaderRegisterForm";
 import TeamMemberRegisteration from "./TeamMemberRegisteration";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const RegisterStudentForm = () => {
   const [formShow, setFormShow] = useState(false);
@@ -138,7 +138,10 @@ const RegisterStudentForm = () => {
               <br></br>
 
               <div className=" lg:flex sm:block lg:flex-col-1 lg:justify-between ">
-                <button
+               
+               <NavLink to='/Student'>
+
+               <button
                 className="flex items-center justify-between  px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-slate-800 rounded-lg focus:outline-none focus:ring  focus:ring-opacity-50">
                   <span className=" ">Click To Register </span>
 
@@ -155,6 +158,8 @@ const RegisterStudentForm = () => {
                     />
                   </svg>
                 </button>
+               </NavLink>
+               
                 <br />
                 <div>
                   <button

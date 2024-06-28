@@ -4,7 +4,7 @@ const app = express();
 require("dotenv").config();
 const port = process.env.PORT_NUM || 8000;
 // database here
-const db = require("./database/config/PostgresDb");
+const db = require("./config/DbConnection");
 
 const initApp = async () => {
   console.log("Testing the database connection..");
@@ -12,9 +12,6 @@ const initApp = async () => {
   try {
     await db.authenticate();
     console.log("Connection has been established successfully.");
-    /**
-     * Start the web server on the specified port.
-     */
 
     app.listen(port, () => {
       console.log(`Server is running at: http://localhost:${port}`);

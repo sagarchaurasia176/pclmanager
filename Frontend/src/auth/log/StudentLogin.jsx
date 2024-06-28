@@ -56,7 +56,7 @@ const StudentLogin = () => {
             className="p-3   mt-3 flex text-center w-full justify-center font-medium 
               text-white shadow-lg rounded-lg bg-slate-900 "
           >
-            Register New Account
+            Register New Team
             <MdDoubleArrow className="  animate-bounce  mt-1 sm:ml-3 sm:mt-1  text-white" />
           </button>
         </div>

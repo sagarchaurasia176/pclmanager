@@ -1,8 +1,13 @@
 import React from 'react'
+import StudentNav from './StudentNav'
 
 const StudentDashboard = () => {
   return (
-    <div>StudentDashboard</div>
+    <div>
+      <StudentNav/>
+
+
+    </div>
   )
 }
 
