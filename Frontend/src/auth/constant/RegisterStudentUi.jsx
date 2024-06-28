@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import RegisterDetails from "./RegisterDetails";
 
 const RegisterStudentUi = () => {
+
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
