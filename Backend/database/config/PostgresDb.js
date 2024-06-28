@@ -12,6 +12,8 @@ const sequelize = new Sequelize(
 );
 
 // Test the database connection
+
+// Test the database connection
 const testConnection = async () => {
   try {
     await sequelize.authenticate();
