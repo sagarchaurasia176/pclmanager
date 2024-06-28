@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import RegisterDetails from "./RegisterDetails";
+import RegisterPage from "./RegisterPage";
 
 const RegisterStudentUi = () => {
-
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -26,29 +25,9 @@ const RegisterStudentUi = () => {
 
               {/* click to register page  */}
               <div>
-                <RegisterDetails />
+              <RegisterPage/>
               </div>
               <br></br>
-              {/* click to register page  */}
-              <div className="  flex justify-center ">
-                <button className="flex items-center justify-between  px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-slate-800 rounded-lg focus:outline-none focus:ring  focus:ring-opacity-50">
-                  <span className=" ">Click To Register </span>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 rtl:-scale-x-100"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <br />
-              </div>
             </div>
           </div>
         </div>
