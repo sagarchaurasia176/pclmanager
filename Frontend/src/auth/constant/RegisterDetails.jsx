@@ -6,6 +6,7 @@ const RegisterDetails = () => {
   const teamMembers = Array.from({ length: 5 }, (_, i) => i); // Change the length as needed
   // states for chooseing button
   const [selectedYear, setSelectedYear] = useState("");
+
   const YearHandleChange = (e) => {
     setSelectedYear(e.target.value);
   };
@@ -20,6 +21,31 @@ const RegisterDetails = () => {
   const currentYear = new Date().getFullYear();
   const years = generateYears(2020, currentYear);
 
+
+  // form validation apply here so we get
+  const [formValid, setValid] = useState({
+    title: "",
+    description: "",
+    ConferencePaper: false,
+    JournalPatent: false,
+    Prototype: false,
+    FullName: "",
+    role: false,
+    Branch: "",
+    UsnNumber: "",
+    year: false,
+  });
+  // form hanler apply here
+  const formtHandler = (e) => {
+    e.preventDefault();
+    // destruct main important key of the input
+    const { type, name, value, checked } = e.target;
+    setValid((studentDatas) => ({
+      // previous datas
+      ...studentDatas,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
   return (
     <div>
       <form className="w-full h-auto gap-6  p-1 mt-3">
@@ -29,6 +55,9 @@ const RegisterDetails = () => {
           </label>
           <input
             type="text"
+            name="title"
+            value={formValid.title}
+            onChange={formtHandler}
             placeholder="Enter your project title name"
             className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -40,6 +69,9 @@ const RegisterDetails = () => {
           </label>
           <input
             type="text"
+            name="description"
+            onChange={formtHandler}
+            value={formValid.description}
             placeholder="Just describe your project within one"
             className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -53,6 +85,9 @@ const RegisterDetails = () => {
               <label className="flex  text-white items-center">
                 <input
                   type="checkbox"
+                  name=" ConferencePaper"
+                  onChange={formtHandler}
+                  checked={formValid.ConferencePaper}
                   className="form-checkbox h-5 w-5 text-blue-600"
                 />
                 <span className="ml-2  text-white">Conference Paper</span>
@@ -61,6 +96,9 @@ const RegisterDetails = () => {
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="JournalPatent"
+                  checked={formValid.JournalPatent}
+                  onChange={formtHandler}
                   className="form-checkbox h-5 w-5 text-blue-600"
                 />
                 <span className="ml-2  text-white">Journal Patent</span>
@@ -69,6 +107,9 @@ const RegisterDetails = () => {
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="Prototype"
+                  checked={formValid.Prototype}
+                  onChange={formtHandler}
                   className="form-checkbox h-5 w-5 text-blue-600"
                 />
                 <span className="ml-2  text-white">Prototype</span>
@@ -92,7 +133,10 @@ const RegisterDetails = () => {
                 </label>
                 <input
                   type="text"
+                  name="FullName"
                   placeholder="First Name"
+                  onChange={formtHandler}
+                  value={formValid.FullName}
                   className="block w-full px-5 py-3 mt-2 text-black placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
@@ -101,7 +145,12 @@ const RegisterDetails = () => {
                   <label className="block mb-2 text-sm text-black font-semibold">
                     Choose roles
                   </label>
-                  <select className="select border  border-red-50 cursor-pointer select-ghost w-full ">
+                  <select
+                    name="role"
+                    value={formValid.role}
+                    onChange={formtHandler}
+                    className="select border  border-red-50 cursor-pointer select-ghost w-full "
+                  >
                     <option disabled selected>
                       Are you leader or member?
                     </option>
@@ -121,7 +170,12 @@ const RegisterDetails = () => {
                 <label className="block mb-2 text-sm text-black font-semibold">
                   Choose Branch
                 </label>
-                <select className="select border  border-red-50 cursor-pointer select-ghost w-full ">
+                <select
+                  name="Branch"
+                  onChange={formtHandler}
+                  value={formValid.Branch}
+                  className="select border  border-red-50 cursor-pointer select-ghost w-full "
+                >
                   <option disabled selected>
                     Choose Branch
                   </option>
@@ -141,6 +195,9 @@ const RegisterDetails = () => {
                 </label>
                 <input
                   type="text"
+                  onChange={formtHandler}
+                  name="USNNumber"
+                  value={formValid.UsnNumber}
                   placeholder="USN Number"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
@@ -152,8 +209,8 @@ const RegisterDetails = () => {
                   </label>
                   <select
                     name="year"
-                    value={selectedYear}
-                    onChange={YearHandleChange}
+                    value={formValid.year}
+                    onChange={formtHandler}
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   >
                     select the year for the branch
@@ -171,7 +228,6 @@ const RegisterDetails = () => {
             </React.Fragment>
           ))}
         </div>
-
       </form>
 
       {/* code stop */}
