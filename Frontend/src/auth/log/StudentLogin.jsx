@@ -7,7 +7,7 @@ const StudentLogin = () => {
   const NavigateToRegisterPage = useNavigate();
   // register Handler apply here so we get
   const RegisterHandler = () => {
-    NavigateToRegisterPage("/RegisterAccount");
+    NavigateToRegisterPage("/PclRegister");
   };
 
   return (
