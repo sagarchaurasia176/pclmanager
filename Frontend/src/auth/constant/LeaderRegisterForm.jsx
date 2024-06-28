@@ -18,7 +18,7 @@ const LeaderRegisterForm = () => {
         {/* usn code  */}
         <div className="     w-full  ">
           <label className="block mb-2  text-sm text-gray-600 dark:text-gray-200">
-            Enter Your USN Number
+            Email Address
           </label>
           <input
             type="text"
