@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BranchName } from "../../Api/BranchName";
 import { chooseOptions } from "../../Api/LeaderMember";
 import toast from "react-hot-toast";
+import { NavLink } from "react-router-dom";
 
 const RegisterPage = () => {
   const generateYears = (startYear, endYear) => {
@@ -21,6 +22,8 @@ const RegisterPage = () => {
     ConferencePaper: false,
     JournalPatent: false,
     Prototype: false,
+    email: "",
+
     teamMembers: [
       {
         FullName: "",
@@ -48,12 +51,33 @@ const RegisterPage = () => {
     }
   };
 
-  const studentDatas = (e) => {
+  const studentDatas = async (e) => {
     e.preventDefault();
-    console.log(formValid);
-    toast.success("Add new Team Member");
+    try {
+      const response = await fetch(`http://localhost:8000/StudentRoutes/FormController`,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValid),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Something went wrong");
+      }
+
+      const result = await response.json();
+      toast.success("Form submitted successfully!");
+      console.log(result)
+    } catch (error) {
+      toast.error(`Error: ${error.message}`);
+      console.error("Error in form submission", error);
+    }
   };
 
+  // add form button apply here
   const addMember = () => {
     setValid({
       ...formValid,
@@ -72,7 +96,10 @@ const RegisterPage = () => {
 
   return (
     <div>
-      <form onSubmit={studentDatas} className="w-full m-auto   h-auto gap-6 p-1 mt-3">
+      <form
+        onSubmit={studentDatas}
+        className="w-full m-auto   h-auto gap-6 p-1 mt-3"
+      >
         <div>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
             Project Title
@@ -80,6 +107,7 @@ const RegisterPage = () => {
           <input
             type="text"
             name="title"
+            required="true"
             value={formValid.title}
             onChange={formtHandler}
             placeholder="Enter your project title name"
@@ -94,6 +122,7 @@ const RegisterPage = () => {
           <input
             type="text"
             name="description"
+            required="true"
             onChange={formtHandler}
             value={formValid.description}
             placeholder="Just describe your project within one"
@@ -154,6 +183,24 @@ const RegisterPage = () => {
             Add Member
           </button>
         </div>
+
+        {/* email and password */}
+        <div>
+          <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+            Email Id
+          </label>
+          <input
+            type="text"
+            name="email"
+            required="true"
+            onChange={formtHandler}
+            value={formValid.email}
+            placeholder="Just describe your project within one"
+            className="block w-full cursor-pointer px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+          />
+        </div>
+        {/* email and password */}
+
         <br />
         {formValid.teamMembers.map((member, index) => (
           <div
@@ -170,6 +217,7 @@ const RegisterPage = () => {
                 placeholder="Full Name"
                 onChange={formtHandler}
                 value={member.FullName}
+                required="true"
                 className="block w-full cursor-pointer px-5 py-3 mt-2 text-black placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
@@ -181,11 +229,10 @@ const RegisterPage = () => {
                 name={`teamMembers.${index}.role`}
                 value={member.role}
                 onChange={formtHandler}
+                required="true"
                 className="select border border-red-50 cursor-pointer select-ghost w-full"
               >
-                <option  selected>
-                  Are you leader or member
-                </option>
+                <option selected>Are you leader or member</option>
                 {chooseOptions.map((roles, roleIndex) => (
                   <option
                     key={roleIndex}
@@ -204,6 +251,7 @@ const RegisterPage = () => {
                 name={`teamMembers.${index}.Branch`}
                 onChange={formtHandler}
                 value={member.Branch}
+                required="true"
                 className="select border border-red-50 cursor-pointer select-ghost w-full"
               >
                 <option disabled selected>
@@ -228,6 +276,7 @@ const RegisterPage = () => {
                 name={`teamMembers.${index}.UsnNumber`}
                 placeholder="USN Number"
                 onChange={formtHandler}
+                required="true"
                 value={member.UsnNumber}
                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -240,25 +289,39 @@ const RegisterPage = () => {
                 name={`teamMembers.${index}.year`}
                 value={member.year}
                 onChange={formtHandler}
+                required="true"
                 className="block w-full px-5 py-3 mt-2 cursor-pointer text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus"
               >
-              <option disabled selected>
-                Choose Year
-              </option>
-              {years.map((Year, branchYear) => (
-                <option
-                  key={branchYear}
-                  className="cursor-pointer outline-none transition-all hover:duration-100 outline"
-                >
-                  {Year}
+                <option disabled selected>
+                  Choose Year
                 </option>
-              ))}
+                {years.map((Year, branchYear) => (
+                  <option
+                    key={branchYear}
+                    className="cursor-pointer outline-none transition-all hover:duration-100 outline"
+                  >
+                    {Year}
+                  </option>
+                ))}
               </select>
-
             </div>
           </div>
         ))}
+        <br></br>
+        <div className=" flex justify-center gap-9 items-center ">
+          <button className=" rounded-lg bg-white p-2  text-black">
+            Click To register{" "}
+          </button>
+
+          <NavLink to="/">
+            <button className=" rounded-lg bg-green-800  p-2  text-white">
+              Already Registered{" "}
+            </button>
+          </NavLink>
+        </div>
       </form>
+
+
     </div>
   );
 };

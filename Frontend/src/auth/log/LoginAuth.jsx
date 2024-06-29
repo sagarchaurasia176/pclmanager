@@ -22,7 +22,7 @@ const LoginAuth = () => {
   return (
     <div>
       <div
-        className="w-full max-w-sm p-6 m-auto  sm:mt-0  lg:mt-2  mx-auto
+        className="w-full max-w-sm p-6 m-auto    mt-12  mx-auto
        bg-white rounded-lg shadow-md dark:bg-gray-800"
       >
         <div className="flex  justify-center mx-auto">
