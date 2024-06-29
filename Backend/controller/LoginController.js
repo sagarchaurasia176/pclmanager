@@ -15,6 +15,7 @@ exports.LoginController = async (req, res) => {
         message: "PLease fill all the details carefully",
       });
     }
+
     let emailExisting = await PCLFormSchema.findOne({ email: email });
     //if not a registered user
     if (!emailExisting) {
@@ -58,6 +59,16 @@ exports.LoginController = async (req, res) => {
         message: "Password Incorrect",
       });
     }
+
+    const loginData = PCLFormSchema.create({email , password});
+  
+    res.status(200).json({
+      success: true,
+      data:loginData,
+      message: "Login succesful !",
+    });
+
+
   } catch (er) {
     res.status(500).json({
       success: false,
@@ -66,3 +77,6 @@ exports.LoginController = async (req, res) => {
     });
   }
 };
+
+
+// get login daat here

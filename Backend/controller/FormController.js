@@ -1,7 +1,6 @@
 // Test the database connection
 const RegisterPclForm = require("../model/PCLFormSchema");
 const bcrypt = require("bcrypt");
-
 exports.FormController = async (req, res) => {
   try {
     // destruct the data first
@@ -15,7 +14,31 @@ exports.FormController = async (req, res) => {
       password,
       teamMembers,
     } = req.body;
-    // create the field in db
+    let emailChecks = await RegisterPclForm.findOne({ email });
+    if (!email || !password) {
+      return res.status(401).json({
+        success: false,
+        message: "please fill  the email and password  field !",
+      });
+    }
+
+    if (!email) {
+      return res.status(401).json({
+        success: false,
+        message: "email already exist !",
+      });
+    }
+    // password hash apply here
+    let passwordHash;
+    try {
+      passwordHash = await bcrypt.hash(password, 10);
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Error inn hashing Password",
+        Error: err.message,
+      });
+    }
     const formStoredLogic = await RegisterPclForm.create({
       title,
       description,
@@ -26,34 +49,6 @@ exports.FormController = async (req, res) => {
       password: passwordHash,
       teamMembers,
     });
-
-    // email check first  securcity apply here
-    let emailChecks = await RegisterPclForm.findOne({ email: email });
-    if (!email || !password) {
-      return res.status(401).json({
-        success: false,
-        message: "please fill  the email and password  field !",
-      });
-    }
-
-    if (email) {
-      return res.status(401).json({
-        success: false,
-        message: "email already exist !",
-      });
-    }
-    // password hash apply here
-    let passwordHash;
-    try {
-      passwordHash = bcrypt.hash(password, 10);
-    } catch (err) {
-      return res.status(500).json({
-        success: false,
-        message: "Error inn hashing Password",
-        Error: err.message,
-      });
-    }
-
     res.status(200).json({
       success: true,
       data: formStoredLogic,
@@ -68,8 +63,8 @@ exports.FormController = async (req, res) => {
   }
 };
 
-// receive data get the data of student
 
+// receive data get the data of student
 exports.LoginController = async (req, res) => {
   try {
     // destruct the data first

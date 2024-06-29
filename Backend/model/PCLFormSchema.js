@@ -31,7 +31,6 @@ const RegisterPclForm = mongoose.Schema({
   password:{
     type: String,
     required: true,
-    maxLength:8,
   },
 
   TeamMemberSchema: [TeamMemberSchema],
