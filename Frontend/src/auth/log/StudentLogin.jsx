@@ -9,13 +9,12 @@ const StudentLogin = () => {
   const RegisterHandler = () => {
     NavigateToRegisterPage("/PclRegister");
   };
-
   return (
     <div>
       <form>
-        <div class="w-full  mt-2">
+        <div class="w-full ">
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-            Email Address
+            Enter Register Email Address
           </label>
           <input
             class="block w-full px-4 py-2 mt-2
@@ -25,20 +24,6 @@ const StudentLogin = () => {
             type="email"
             placeholder="jain@ac.in"
             aria-label="Email Address"
-          />
-        </div>
-
-        <div class="w-full  mt-4">
-          <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-            Password
-          </label>
-          <input
-            class="block w-full px-4 py-2 mt-2
-             text-gray-700 placeholder-gray-500
-              bg-white border rounded-lg dark:bg-gray-800
-               dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-            type="password"
-            placeholder="Password"
           />
         </div>
 
