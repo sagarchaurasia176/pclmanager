@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // Define a nested schema for team members
-const TeamMemberSchema = new Schema({
+const TeamMemberSchema = mongoose.Schema({
   FullName: { type: String, default: "", required: true },
   role: { type: String, default: "", required: true },
   Branch: { type: String, default: "", required: true },
@@ -24,6 +24,16 @@ const RegisterPclForm = mongoose.Schema({
   ConferencePaper: { type: Boolean, default: false },
   JournalPatent: { type: Boolean, default: false },
   Prototype: { type: Boolean, default: false },
+  email:{
+    type: String,
+    required: true,
+  },
+  password:{
+    type: String,
+    required: true,
+    maxLength:8,
+  },
+
   TeamMemberSchema: [TeamMemberSchema],
 });
 

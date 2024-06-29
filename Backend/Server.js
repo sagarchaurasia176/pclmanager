@@ -8,5 +8,10 @@ app.listen(PORT, () => {
 // passed the middlware here so we get
 app.use(express.json());
 // const db connection
-const dbConnection = require('./config/DbConnection')
+const dbConnection = require("./config/DbConnection");
 dbConnection();
+
+// routes
+const StudentRoutes = require("./routes/LoginRoutes");
+app.use('/StudentRoutes' , StudentRoutes);
+
