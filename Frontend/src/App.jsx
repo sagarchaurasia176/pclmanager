@@ -1,5 +1,7 @@
 import React from "react";
+import {  Routes, Route } from "react-router-dom";
 import "./App.css";
+<<<<<<< Updated upstream
 import LoginAuth from "./auth/log/LoginAuth";
 import { Routes, Route } from "react-router-dom";
 
@@ -17,12 +19,21 @@ import GuideAllocation from "./Dashboard/Admin/GuideAllocation";
 
 
 
+=======
+import LoginAuth from "./auth/LoginAuth";
+import GuideDashboard from "./Dashboard/Guide/GuideDashboard";
+import MainAdmin from "./Dashboard/Admin/AdminDashboard";
+import StudentDashboard from "./Dashboard/Student/StudentDashboard";
+import StudentLogin from "./auth/StudentLogin";
+import RegisterStudentForm from "./auth/RegisterStudentForm";
+>>>>>>> Stashed changes
 
 function App() {
   return (
     <>
       {/* This is the main controller page */}
       <Routes>
+<<<<<<< Updated upstream
         <Route path="/" element={<LoginAuth />}></Route>
         <Route path="/admin" element={<MainAdmin />}></Route>
         <Route path="/PclRegister" element={<PclRegisterationForm />}></Route>
@@ -35,7 +46,19 @@ function App() {
         <Route path="/student/ViewMarkAtt" element={<ViewMarksAttendance/>}></Route>
       </Routes>
 
+=======
+        <Route path="/" element={<LoginAuth />} />
+        <Route path="/admin" element={<MainAdmin />} />
+        <Route path="/guide" element={<GuideDashboard />} />
+        <Route path="/student" element={<StudentDashboard />} />
+        <Route path="/student-login" element={<StudentLogin />} />
+        <Route path="/register-account" element={<RegisterStudentForm />} />
+      </Routes>
+    
+    
+>>>>>>> Stashed changes
     </>
+    
   );
 }
 
