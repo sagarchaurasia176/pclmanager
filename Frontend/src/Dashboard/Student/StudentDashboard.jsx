@@ -1,14 +1,5 @@
-
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-
-import { GiTeamIdea } from "react-icons/gi";
-import { MdDoubleArrow } from "react-icons/md";
-import { MdCastForEducation } from "react-icons/md";
-import { ImUserCheck } from "react-icons/im";
-
-
-// import ProjectBox from "../Student/ProjectBox";
+import React, {useState} from 'react'
+import { NavLink } from 'react-router-dom';
 
 const StudentDashboard = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -23,12 +14,8 @@ const StudentDashboard = () => {
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className="navbar bg-base-300 w-full">
-          <div className="flex-none lg-hidden">
-            <label
-              htmlFor="my-drawer-3"
-              aria-label="open sidebar"
-              className="btn btn-square btn-ghost"
-            >
+          <div className="flex-none lg:hidden">
+            <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -48,23 +35,19 @@ const StudentDashboard = () => {
           <div className="hidden flex-none lg-block">
             <ul className="menu menu-horizontal">
               <li>
-                <NavLink
-                  to="/guide/view-team"
-                  className={`nav-link ${
-                    activeLink === "/guide/view-team" ? "active" : ""
-                  }`}
-                  onClick={() => handleLinkClick("/guide/view-team")}
+                <NavLink 
+                  to="/student/ViewTeam" 
+                  className={`nav-link ${activeLink === '/student/ViewTeam' ? 'active' : ''}`} 
+                  onClick={() => handleLinkClick('/student/ViewTeam')}
                 >
                   View Team
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/guide/view-marks"
-                  className={`nav-link ${
-                    activeLink === "/guide/view-marks" ? "active" : ""
-                  }`}
-                  onClick={() => handleLinkClick("/guide/view-marks")}
+                <NavLink 
+                  to="/student/ViewMarkAtt" 
+                  className={`nav-link ${activeLink === '/student/ViewMarkAtt' ? 'active' : ''}`} 
+                  onClick={() => handleLinkClick('/student/ViewMarkAtt')}
                 >
                   View Marks
                 </NavLink>
@@ -76,59 +59,22 @@ const StudentDashboard = () => {
 
         
         {/* Page content here */}
-
-
-        <div class="flex flex-row">
-
-          <div class="basis w-full m-10">
-            <div className="card bg-primary text-primary-content">
-              <div className="card-body">
-                <div>
-                  <GiTeamIdea className="object-cover w-16 h-16"/> 
-                </div>
-                <h2 className="card-title">View Teams</h2>
-                
-                <div className="card-actions justify-end">
-                  <button className="btn">Click <MdDoubleArrow /> </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="basis w-full m-10">
-            <div className="card bg-primary text-primary-content">
-              <div className="card-body">
-                <div>
-                  <MdCastForEducation className="object-cover w-16 h-16"/> 
-                </div>
-                <h2 className="card-title">Student Marks</h2>
-                <div className="card-actions justify-end">
-                  <button className="btn">Click <MdDoubleArrow /> </button>
-                </div>
-              </div> 
-            </div>
-          </div>
-
-          <div class="basis w-full m-10">
-            <div className="card bg-primary text-primary-content">
-              <div className="card-body">
-                <div>
-                  <ImUserCheck className="object-cover w-16 h-16 rounded-full"/> 
-                </div>
-                <h2 className="card-title">Attedance</h2>
-                
-                <div className="card-actions justify-end">
-                  <button className="btn">Click <MdDoubleArrow /> </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
+        <div className="hero bg-base-200 min-h-screen">
+  <div className="hero-content text-center">
+    <div className="max-w-md">
+      <h1 className="text-5xl font-bold">Hello there</h1>
+      <p className="py-6">
+        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+        quasi. In deleniti eaque aut repudiandae et a id nisi.
+      </p>
+      <button className="btn btn-primary">Get Started</button>
+    </div>
+  </div>
+</div>
+        
       </div>
     </div>
   );
 };
 
-export default StudentDashboard;
+export default StudentDashboard
