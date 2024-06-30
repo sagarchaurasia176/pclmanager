@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { BranchName } from "../../Api/BranchName";
 import { chooseOptions } from "../../Api/LeaderMember";
 import toast from "react-hot-toast";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 const RegisterPage = () => {
   const generateYears = (startYear, endYear) => {
@@ -12,6 +13,8 @@ const RegisterPage = () => {
     }
     return years;
   };
+
+  const moveToLoging = useNavigate();
 
   const currentYear = new Date().getFullYear();
   const years = generateYears(2020, currentYear);
@@ -50,32 +53,65 @@ const RegisterPage = () => {
       setValid({ ...formValid, [name]: type === "checkbox" ? checked : value });
     }
   };
-
+  
+  
   const studentDatas = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8000/StudentRoutes/FormController`,{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formValid),
+      const response = await axios.post('http://localhost:8000/StudentRoutes/FormController', formValid, {
+        headers: {
+          "Content-Type": "application/json",
         }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Something went wrong");
-      }
-
-      const result = await response.json();
+      });
+  
       toast.success("Form submitted successfully!");
-      console.log(result)
+      moveToLoging("/");
+      console.log(response.data);
     } catch (error) {
-      toast.error(`Error: ${error.message}`);
-      console.error("Error in form submission", error);
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        toast.error(`Error: ${error.response.data.message || "Something went wrong"}`);
+        console.error("Error in form submission", error.response.data);
+      } else if (error.request) {
+        // The request was made but no response was received
+        toast.error("Error: No response from server");
+        console.error("Error in form submission", error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        toast.error(`Error: ${error.message}`);
+        console.error("Error in form submission", error.message);
+      }
     }
   };
+  
+  // const studentDatas = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = axios.post('http://localhost:8000/StudentRoutes/FormController')
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(formValid),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.message || "Something went wrong");
+  //     } else {
+  //       const result = await response.json();
+  //       toast.success("Form submitted successfully!");
+  //       moveToLoging("/");
+  //       console.log(result);
+  //     }
+  //   } catch (error) {
+  //     toast.error(`Error: ${error.message}`);
+  //     console.error("Error in form submission", error);
+  //   }
+  // };
 
   // add form button apply here
   const addMember = () => {
@@ -98,7 +134,7 @@ const RegisterPage = () => {
     <div>
       <form
         onSubmit={studentDatas}
-        className="w-full m-auto   h-auto gap-6 p-1 mt-3"
+        className="w-full m-auto  h-auto gap-6  p-12 mt-3"
       >
         <div>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -195,7 +231,7 @@ const RegisterPage = () => {
             required="true"
             onChange={formtHandler}
             value={formValid.email}
-            placeholder="Just describe your project within one"
+            placeholder="write unique Email , that everyone can access with that email !"
             className="block w-full cursor-pointer px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
@@ -320,8 +356,6 @@ const RegisterPage = () => {
           </NavLink>
         </div>
       </form>
-
-
     </div>
   );
 };
