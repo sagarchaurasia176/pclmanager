@@ -10,7 +10,7 @@ let corsOptions = {
   methods: "GET , POST,PUT,PATCH,DELETE,HEAD",
   Credential: true,
 };
-
+// cors works fine
 // listen port apply here
 app.listen(PORT, () => {
   console.log(` server running at this ${PORT}`);
