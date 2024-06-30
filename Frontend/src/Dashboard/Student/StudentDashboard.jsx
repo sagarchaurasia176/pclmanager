@@ -1,6 +1,6 @@
+
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-
 
 import { GiTeamIdea } from "react-icons/gi";
 import { MdDoubleArrow } from "react-icons/md";
@@ -8,7 +8,7 @@ import { MdCastForEducation } from "react-icons/md";
 import { ImUserCheck } from "react-icons/im";
 
 
-
+// import ProjectBox from "../Student/ProjectBox";
 
 const StudentDashboard = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -23,7 +23,7 @@ const StudentDashboard = () => {
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className="navbar bg-base-300 w-full">
-          <div className="flex-none lg:hidden">
+          <div className="flex-none lg-hidden">
             <label
               htmlFor="my-drawer-3"
               aria-label="open sidebar"
@@ -44,39 +44,41 @@ const StudentDashboard = () => {
               </svg>
             </label>
           </div>
-          <div className="mx-2 flex-1 px-2">PCL Manager - Student</div>
-          <div className="hidden flex-none lg:block">
+          <div className="mx-2 flex-1 px-2">Student Dashboard</div>
+          <div className="hidden flex-none lg-block">
             <ul className="menu menu-horizontal">
               <li>
                 <NavLink
-                  to="/student/ViewTeam"
+                  to="/guide/view-team"
                   className={`nav-link ${
-                    activeLink === "/student/ViewTeam" ? "active" : ""
+                    activeLink === "/guide/view-team" ? "active" : ""
                   }`}
-                  onClick={() => handleLinkClick("/student/ViewTeam")}
+                  onClick={() => handleLinkClick("/guide/view-team")}
                 >
                   View Team
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/student/ViewMarkAtt"
+                  to="/guide/view-marks"
                   className={`nav-link ${
-                    activeLink === "/student/ViewMarkAtt" ? "active" : ""
+                    activeLink === "/guide/view-marks" ? "active" : ""
                   }`}
-                  onClick={() => handleLinkClick("/student/ViewMarkAtt")}
+                  onClick={() => handleLinkClick("/guide/view-marks")}
                 >
-                  Attendance / Marks
+                  View Marks
                 </NavLink>
               </li>
             </ul>
           </div>
         </div>
+
+
+        
         {/* Page content here */}
 
 
-
-        <div class="flex flex-row hero bg-base-200 min-h-screen">
+        <div class="flex flex-row">
 
           <div class="basis w-full m-10">
             <div className="card bg-primary text-primary-content">
@@ -123,9 +125,6 @@ const StudentDashboard = () => {
           </div>
 
         </div>
-
-        
-
 
       </div>
     </div>
