@@ -15,8 +15,8 @@ import MainAdmin from "./Dashboard/Admin/AdminDashboard";
 import AdminPanel from "./Dashboard/Admin/AdminPanel";
 import GuideAllocation from "./Dashboard/Admin/GuideAllocation";
 
-
-
+//teacher-registration
+import TeacherRegistration from "./auth/log/TeacherRegistration";
 
 function App() {
   return (
@@ -27,14 +27,23 @@ function App() {
         <Route path="/admin" element={<MainAdmin />}></Route>
         <Route path="/PclRegister" element={<PclRegisterationForm />}></Route>
         <Route path="/admin/panel" element={<AdminPanel />}></Route>
-        <Route path="/admin/guide-allocation" element={<GuideAllocation />}></Route>
-
+        <Route
+          path="/admin/guide-allocation"
+          element={<GuideAllocation />}
+        ></Route>
 
         <Route path="/student" element={<StudentDashboard />}></Route>
-        <Route path="/student/ViewTeam" element={<ViewTeam/>}></Route>
-        <Route path="/student/ViewMarkAtt" element={<ViewMarksAttendance/>}></Route>
-      </Routes>
+        <Route path="/student/ViewTeam" element={<ViewTeam />}></Route>
+        <Route
+          path="/student/ViewMarkAtt"
+          element={<ViewMarksAttendance />}
+        ></Route>
 
+        <Route
+          path="/teacher-registration"
+          element={<TeacherRegistration />}
+        ></Route>
+      </Routes>
     </>
   );
 }
