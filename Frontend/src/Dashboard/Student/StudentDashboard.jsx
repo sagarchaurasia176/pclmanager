@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { FaSignOutAlt } from 'react-icons/fa'; // Import FontAwesome icon
 
 const StudentDashboard = () => {
@@ -9,7 +8,6 @@ const StudentDashboard = () => {
     name: 'John Doe',
     usn: '123456',
     email: 'john.doe@example.com',
-    icon: 'https://via.placeholder.com/40', // Placeholder image for student icon
   };
 
   const teamMembers = [
@@ -42,15 +40,10 @@ const StudentDashboard = () => {
       <header className="bg-blue-600 text-white p-4 rounded-md mb-6 shadow-lg flex justify-between items-center">
         <h1 className="text-2xl font-bold">ERP Dashboard for PCL</h1>
         <div className="flex items-center space-x-4">
-          <input 
-            type="text" 
-            placeholder="Search..." 
-            className="p-2 rounded-md bg-gray-700 text-white placeholder-gray-400"
-          />
-          <div className="flex items-center space-x-2">
-            <img src={student.icon} alt="Student Icon" className="w-10 h-10 rounded-full" />
-            <span className="font-bold">{student.name}</span>
-          </div>
+          <button className="bg-green-500 p-2 rounded-md hover:bg-green-400">
+            Meeting
+          </button>
+          <span className="font-bold">{student.name}</span>
         </div>
       </header>
       <div className="mb-6">
