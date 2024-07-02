@@ -6,7 +6,7 @@ import GuideDashboard from "./Dashboard/Guide/GuideDashboard";
 import MainAdmin from "./Dashboard/Admin/AdminDashboard";
 import StudentDashboard from "./Dashboard/Student/StudentDashboard";
 import PclRegisterationForm from "./auth/constant/RegisterStudentUi";
-import TeamTableData from "./Dashboard/Student/TeamTableData";
+import RegistersPages from "./auth/constant/RegistersPages";
 
 function App() {
   return (
@@ -17,11 +17,11 @@ function App() {
         <Route path="/admin" element={<MainAdmin />}></Route>
         <Route path="/guide" element={<GuideDashboard />}></Route>
         <Route path="/Student" element={<StudentDashboard />}></Route>
-        <Route path="/TeamTableData" element={<TeamTableData />}></Route>
-        <Route path="/PclRegister" element={<PclRegisterationForm />}></Route>
+        <Route path="/PclRegisters" element={<PclRegisterationForm />}></Route>
+        <Route path="/PclRegister" element={<RegistersPages/>}></Route>
         {/* Register Accounts*/}
-      </Routes>
 
+      </Routes>
     </>
   );
 }

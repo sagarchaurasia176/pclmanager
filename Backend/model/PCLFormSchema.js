@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const TeamMemberSchema = new mongoose.Schema({
   FullName: { type: String, default: "" },
-  role: { type: String, required: true, default: "" },
+  role: { type: String, default: "" },
   Branch: { type: String, default: "" },
   UsnNumber: { type: String, default: "" },
   year: { type: String, default: "" },

@@ -53,8 +53,6 @@ const RegisterPage = () => {
       setValid({ ...formValid, [name]: type === "checkbox" ? checked : value });
     }
   };
-  
-  
   const studentDatas = async (e) => {
     e.preventDefault();
     try {
@@ -84,36 +82,6 @@ const RegisterPage = () => {
       }
     }
   };
-  
-  // const studentDatas = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = axios.post('http://localhost:8000/StudentRoutes/FormController')
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(formValid),
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       const errorData = await response.json();
-  //       throw new Error(errorData.message || "Something went wrong");
-  //     } else {
-  //       const result = await response.json();
-  //       toast.success("Form submitted successfully!");
-  //       moveToLoging("/");
-  //       console.log(result);
-  //     }
-  //   } catch (error) {
-  //     toast.error(`Error: ${error.message}`);
-  //     console.error("Error in form submission", error);
-  //   }
-  // };
-
-  // add form button apply here
   const addMember = () => {
     setValid({
       ...formValid,
@@ -134,7 +102,7 @@ const RegisterPage = () => {
     <div>
       <form
         onSubmit={studentDatas}
-        className="w-full m-auto  h-auto gap-6  p-12 mt-3"
+        className= " w-[900px] m-auto  h-auto gap-6  p-12 mt-3"
       >
         <div>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -166,47 +134,7 @@ const RegisterPage = () => {
           />
         </div>
 
-        <br />
-        <label className=" mb-2 text-sm text-white">Expected Outcomes</label>
-        <div className=" flex flex-wrap text-white">
-          <div className="p-6">
-            <div className="space-y-4">
-              <label className="flex text-white items-center">
-                <input
-                  type="checkbox"
-                  name="ConferencePaper"
-                  onChange={formtHandler}
-                  checked={formValid.ConferencePaper}
-                  className="form-checkbox cursor-pointer h-5 w-5 text-blue-600"
-                />
-                <span className="ml-2 text-white">Conference Paper</span>
-              </label>
-
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="JournalPatent"
-                  checked={formValid.JournalPatent}
-                  onChange={formtHandler}
-                  className="form-checkbox cursor-pointer h-5 w-5 text-blue-600"
-                />
-                <span className="ml-2 text-white">Journal Patent</span>
-              </label>
-
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="Prototype"
-                  checked={formValid.Prototype}
-                  onChange={formtHandler}
-                  className="form-checkbox cursor-pointer h-5 w-5 text-blue-600"
-                />
-                <span className="ml-2 text-white">Prototype</span>
-              </label>
-            </div>
-          </div>
-        </div>
-        <br />
+    
 
         <label className="text-gray-600 dark:text-gray-200">
           Batch Members
@@ -245,7 +173,7 @@ const RegisterPage = () => {
           >
             <div>
               <label className="block mb-2 text-sm text-black font-semibold">
-                Full Name {index + 1}
+                Full Name
               </label>
               <input
                 type="text"
@@ -303,6 +231,7 @@ const RegisterPage = () => {
                 ))}
               </select>
             </div>
+
             <div>
               <label className="block mb-2 text-sm text-black font-semibold">
                 USN Number
@@ -317,6 +246,8 @@ const RegisterPage = () => {
                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
+
+
             <div>
               <label className="block mb-2 text-sm text-black font-semibold">
                 Year
@@ -343,6 +274,8 @@ const RegisterPage = () => {
             </div>
           </div>
         ))}
+
+
         <br></br>
         <div className=" flex justify-center gap-9 items-center ">
           <button className=" rounded-lg bg-white p-2  text-black">
