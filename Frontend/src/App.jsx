@@ -3,6 +3,7 @@ import "./App.css";
 import LoginAuth from "./auth/log/LoginAuth";
 import { Routes, Route } from "react-router-dom";
 
+import RegisterGuidePage from "./auth/GuideConstant/RegisterGuidePage";
 import PclRegisterationForm from "./auth/constant/RegisterStudentUi";
 import RegistersPages from "./auth/constant/RegistersPages";
 
@@ -32,11 +33,15 @@ function App() {
         <Route path="/PclRegister" element={<RegistersPages/>}></Route>
         {/* Register Accounts*/}
 
+<<<<<<< Updated upstream
         <Route path="/admin/panel" element={<AdminPanel />}></Route>
         <Route
           path="/admin/guide-allocation"
           element={<GuideAllocation />}
         ></Route>
+=======
+        <Route path="/Guide/registerform" element={<RegisterGuidePage />}></Route>
+>>>>>>> Stashed changes
 
         <Route path="/student" element={<StudentDashboard />}></Route>
         <Route path="/student/ViewTeam" element={<ViewTeam />}></Route>

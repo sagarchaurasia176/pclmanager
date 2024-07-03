@@ -16,7 +16,7 @@ const RegisterStudentUi = () => {
                 </span>
               </h1>
               {/* add the register details here */}
-
+              
               <p className="mt-4 text-center text-gray-500 dark:text-gray-400">
                 Project Centric Learning is a powerful tool for students to work
                 in areas of their choice and
