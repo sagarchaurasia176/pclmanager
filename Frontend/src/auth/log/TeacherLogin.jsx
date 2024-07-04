@@ -31,7 +31,7 @@ const TeacherLogin = () => {
         {/* registeration form apply here */}
         <div className="  cursor-pointer ">
           <button
-            className="p-3   mt-3 flex text-center w-full justify-center font-medium 
+            className="p-3 mt-3 flex text-center w-full justify-center font-medium 
               text-white shadow-lg rounded-lg bg-slate-900 "
           >
             Register New Account
