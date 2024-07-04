@@ -9,25 +9,18 @@ const TeamMemberSchema = new mongoose.Schema({
   year: { type: String, default: "" },
 });
 
-// Define the schema for the RegisterPclForm
 const RegisterPclFormSchema = new mongoose.Schema({
   title: {
     type: String,
+    default: "",
   },
-  description: {
+  description:{
     type: String,
+    default: "",
   },
-  ConferencePaper: {
-    type: Boolean,
-    default: false,
-  },
-  JournalPatent: {
-    type: Boolean,
-    default: false,
-  },
-  Prototype: { type: Boolean, default: false },
   email: {
     type: String,
+    default: "",
   },
   teamMembers: [TeamMemberSchema],
 });

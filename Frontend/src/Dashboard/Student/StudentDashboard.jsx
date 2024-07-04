@@ -3,12 +3,10 @@ import { FaSignOutAlt } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
+// student Dashboard page apply here so we gets
 const StudentDashboard = () => {
-  const [activeSection, setActiveSection] = useState("marks");
-
+  // const [activeSection, setActiveSection] = useState("marks");
   const [studentGet, setStudentGet] = useState([]);
-
   // Using useNavigate from react-router-dom for navigation
   const moveBack = useNavigate();
 
@@ -58,46 +56,8 @@ const StudentDashboard = () => {
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
-        {/* Example section for displaying student details */}
-        <section className="bg-gray-900 p-6 rounded-md shadow-md transform transition duration-300 hover:scale-105 hover:bg-gray-800">
-          <div className=" text text-center">
-            <h2 className="text-xl font-semibold text-blue-400 mb-4">
-              Expected Outcomes
-            </h2>
-          </div>
-          <div className="mt-1">
-            {/* Check if team members data exists and render table */}
-
-            <table className="min-w-full bg-gray-800 rounded-md overflow-hidden">
-              <thead>
-                <tr>
-                  <th className="py-2 px-4 bg-gray-700">Conference Paper</th>
-                  <th className="py-2 px-4 bg-gray-700">Journal Patent</th>
-                  <th className="py-2 px-4 bg-gray-700">Prototype</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* Map through team members and render rows */}
-                <>
-                  <tr className="text-center">
-                    <td className="py-2 px-4 border-b border-gray-600">
-                      {studentGet.ConferencePaper}
-                    </td>
-                    <td className="py-2 px-4 border-b border-gray-600">
-                      {studentGet.JournalPatent}
-                    </td>
-                    <td className="py-2 px-4 border-b border-gray-600">
-                      {studentGet.Prototype}
-                    </td>
-                  </tr>
-                </>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
         {/* Section for displaying team members in a table */}
-        <section className="bg-gray-900 p-6 rounded-md shadow-md transform transition duration-300 hover:scale-105 hover:bg-gray-800">
+        <section className="bg-gray-900 p-6 rounded-md shadow-md ">
           <h2 className="text-xl font-semibold text-blue-400 mb-4">
             Team Members
           </h2>
@@ -134,7 +94,7 @@ const StudentDashboard = () => {
         </section>
 
         {/* Example section for displaying project details */}
-        <section className="bg-gray-900 p-6 rounded-md shadow-md transform transition duration-300 hover:scale-105 hover:bg-gray-800">
+        <section className="bg-gray-900 p-6 rounded-md shadow-md  ">
           <h2 className="text-xl font-semibold text-blue-400 mb-4">
             Project Details
           </h2>
@@ -145,7 +105,7 @@ const StudentDashboard = () => {
                 Title :<p className=" uppercase">{studentGet.title}</p>
               </p>
               <br></br>
-              <p>Description:</p>
+              <p>Project Id:</p>
               <span>{studentGet.description}</span>
 
               {/* Add more details as needed */}
@@ -156,11 +116,8 @@ const StudentDashboard = () => {
 
       <footer className="bg-blue-600 text-white p-4 rounded-md mt-6 shadow-lg flex justify-between items-center">
         <div className="text-center">
-          <p className="font-semibold">© 2024 PCL ERP</p>
-          <p className="mt-2">
-            PCL_MANAGEMENT
-            <span className="text-yellow-400">SYSTEM</span>
-          </p>
+          <p className="font-semibold ">© 2024 PCL ERP</p>
+       
         </div>
         <button
           onClick={handleLogout}

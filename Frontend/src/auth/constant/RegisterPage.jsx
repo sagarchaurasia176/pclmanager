@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { BranchName } from "../../Api/BranchName";
 import { chooseOptions } from "../../Api/LeaderMember";
 import toast from "react-hot-toast";
-import { NavLink, useNavigate } from "react-router-dom";
-import axios from 'axios'
+import { NavLink, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const RegisterPage = () => {
   const generateYears = (startYear, endYear) => {
@@ -14,19 +14,14 @@ const RegisterPage = () => {
     return years;
   };
 
-  const moveToLoging = useNavigate();
-
   const currentYear = new Date().getFullYear();
   const years = generateYears(2020, currentYear);
-
+  const  loginHandlers  = useNavigate()
+ 
   const [formValid, setValid] = useState({
     title: "",
-    description: "",
-    ConferencePaper: false,
-    JournalPatent: false,
-    Prototype: false,
     email: "",
-
+    description :"",
     teamMembers: [
       {
         FullName: "",
@@ -53,23 +48,33 @@ const RegisterPage = () => {
       setValid({ ...formValid, [name]: type === "checkbox" ? checked : value });
     }
   };
+
   const studentDatas = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/StudentRoutes/FormController', formValid, {
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axios.post(
+        "http://localhost:8000/StudentRoutes/Registered",
+        formValid,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
-  
-      toast.success("Form submitted successfully!");
-      moveToLoging("/");
-      console.log(response.data);
+      );
+
+      // data stored succefully
+      alert("Registerd successful ! kindly login again");
+      toast.success("Data stored successfuly")
+      loginHandlers("/");
+
+
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        toast.error(`Error: ${error.response.data.message || "Something went wrong"}`);
+        toast.error(
+          `Error: ${error.response.data.message || "Something went wrong"}`
+        );
         console.error("Error in form submission", error.response.data);
       } else if (error.request) {
         // The request was made but no response was received
@@ -82,6 +87,8 @@ const RegisterPage = () => {
       }
     }
   };
+
+  // add form button apply here
   const addMember = () => {
     setValid({
       ...formValid,
@@ -102,7 +109,7 @@ const RegisterPage = () => {
     <div>
       <form
         onSubmit={studentDatas}
-        className= " w-[900px] m-auto  h-auto gap-6  p-12 mt-3"
+        className="w-full m-auto  h-auto gap-6  p-12 mt-3"
       >
         <div>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -118,10 +125,10 @@ const RegisterPage = () => {
             className="block cursor-pointer w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
-
         <div>
+        <br></br>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-            Short project descriptions
+            Short Descriptions Of your Project
           </label>
           <input
             type="text"
@@ -129,25 +136,12 @@ const RegisterPage = () => {
             required="true"
             onChange={formtHandler}
             value={formValid.description}
-            placeholder="Just describe your project within one"
+            placeholder="Descriptions Of your Project"
             className="block w-full cursor-pointer px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
 
-    
-
-        <label className="text-gray-600 dark:text-gray-200">
-          Batch Members
-        </label>
-        <div className=" mt-2 flex justify-end gap-6">
-          <button
-            onClick={() => addMember()}
-            className="bg-slate-800  text-white p-2 rounded-md mb-4"
-          >
-            Add Member
-          </button>
-        </div>
-
+        <br></br>
         {/* email and password */}
         <div>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -163,8 +157,24 @@ const RegisterPage = () => {
             className="block w-full cursor-pointer px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
-        {/* email and password */}
+        <br></br>
 
+        <br></br>
+
+        <div className=" mt-2 flex justify-end gap-6">
+          <button
+            onClick={() => addMember()}
+            className="bg-slate-800  text-white p-2 rounded-md mb-4"
+          >
+            Add Member
+          </button>
+        </div>
+
+        {/* email and password */}
+        <label className="text-gray-600 dark:text-gray-200">
+          Batch Members
+        </label>
+        <br></br>
         <br />
         {formValid.teamMembers.map((member, index) => (
           <div
@@ -173,7 +183,7 @@ const RegisterPage = () => {
           >
             <div>
               <label className="block mb-2 text-sm text-black font-semibold">
-                Full Name
+                Full Name {index + 1}
               </label>
               <input
                 type="text"
@@ -231,7 +241,6 @@ const RegisterPage = () => {
                 ))}
               </select>
             </div>
-
             <div>
               <label className="block mb-2 text-sm text-black font-semibold">
                 USN Number
@@ -246,8 +255,6 @@ const RegisterPage = () => {
                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
-
-
             <div>
               <label className="block mb-2 text-sm text-black font-semibold">
                 Year
@@ -275,13 +282,14 @@ const RegisterPage = () => {
           </div>
         ))}
 
-
         <br></br>
         <div className=" flex justify-center gap-9 items-center ">
-          <button className=" rounded-lg bg-white p-2  text-black">
+          <button
+         
+            className=" rounded-lg bg-white p-2  text-black"
+          >
             Click To register{" "}
           </button>
-
           <NavLink to="/">
             <button className=" rounded-lg bg-green-800  p-2  text-white">
               Already Registered{" "}
