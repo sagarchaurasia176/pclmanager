@@ -5,8 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import GuideDashboard from "./Dashboard/Guide/GuideDashboard";
 import MainAdmin from "./Dashboard/Admin/AdminDashboard";
 import StudentDashboard from "./Dashboard/Student/StudentDashboard";
-import PclRegisterationForm from "./auth/constant/RegisterStudentUi";
-import RegistersPages from "./auth/constant/RegistersPages";
+import RegisterStudentUi from "./auth/constant/RegisterStudentUi";
 
 function App() {
   return (
@@ -17,10 +16,8 @@ function App() {
         <Route path="/admin" element={<MainAdmin />}></Route>
         <Route path="/guide" element={<GuideDashboard />}></Route>
         <Route path="/Student" element={<StudentDashboard />}></Route>
-        <Route path="/PclRegisters" element={<PclRegisterationForm />}></Route>
-        <Route path="/PclRegister" element={<RegistersPages/>}></Route>
+        <Route path="/PclRegister" element={<RegisterStudentUi />}></Route>
         {/* Register Accounts*/}
-
       </Routes>
     </>
   );
