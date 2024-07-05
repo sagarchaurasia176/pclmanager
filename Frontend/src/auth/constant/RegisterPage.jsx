@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BranchName } from "../../Api/BranchName";
 import { chooseOptions } from "../../Api/LeaderMember";
 import toast from "react-hot-toast";
-import { NavLink, useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const RegisterPage = () => {
@@ -16,12 +16,12 @@ const RegisterPage = () => {
 
   const currentYear = new Date().getFullYear();
   const years = generateYears(2020, currentYear);
-  const  loginHandlers  = useNavigate()
- 
+  const loginHandlers = useNavigate();
+
   const [formValid, setValid] = useState({
     title: "",
+    description: "",
     email: "",
-    description :"",
     teamMembers: [
       {
         FullName: "",
@@ -53,7 +53,7 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/StudentRoutes/Registered",
+        "http://localhost:8000/StudentRoutes/FormController",
         formValid,
         {
           headers: {
@@ -62,16 +62,16 @@ const RegisterPage = () => {
         }
       );
 
-      // data stored succefully
-      alert("Registerd successful ! kindly login again");
-      toast.success("Data stored successfuly")
-      loginHandlers("/");
-
-
+      toast.success("Form submitted successfully!");
+      moveToLoging("/");
+      console.log(response.data);
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
+        toast.error(
+          `Error: ${error.response.data.message || "Something went wrong"}`
+        );
         toast.error(
           `Error: ${error.response.data.message || "Something went wrong"}`
         );
@@ -88,7 +88,6 @@ const RegisterPage = () => {
     }
   };
 
-  // add form button apply here
   const addMember = () => {
     setValid({
       ...formValid,
@@ -125,8 +124,9 @@ const RegisterPage = () => {
             className="block cursor-pointer w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
+        <br />
         <div>
-        <br></br>
+          <br></br>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
             Short Descriptions Of your Project
           </label>
@@ -140,8 +140,8 @@ const RegisterPage = () => {
             className="block w-full cursor-pointer px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
+        <br />
 
-        <br></br>
         {/* email and password */}
         <div>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -157,10 +157,13 @@ const RegisterPage = () => {
             className="block w-full cursor-pointer px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
-        <br></br>
+        <br />
 
-        <br></br>
+        {/* email and password */}
 
+        <label className="text-gray-600 dark:text-gray-200">
+          Batch Members
+        </label>
         <div className=" mt-2 flex justify-end gap-6">
           <button
             onClick={() => addMember()}
@@ -170,11 +173,6 @@ const RegisterPage = () => {
           </button>
         </div>
 
-        {/* email and password */}
-        <label className="text-gray-600 dark:text-gray-200">
-          Batch Members
-        </label>
-        <br></br>
         <br />
         {formValid.teamMembers.map((member, index) => (
           <div
@@ -284,10 +282,7 @@ const RegisterPage = () => {
 
         <br></br>
         <div className=" flex justify-center gap-9 items-center ">
-          <button
-         
-            className=" rounded-lg bg-white p-2  text-black"
-          >
+          <button className=" rounded-lg bg-white p-2  text-black">
             Click To register{" "}
           </button>
           <NavLink to="/">

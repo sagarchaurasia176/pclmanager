@@ -4,7 +4,8 @@ const RegisteredStudents = require("../model/PCLFormSchema");
 exports.FormController = async (req, res) => {
   try {
     // destruct the data first
-    const { title, email,  description , teamMembers } = req.body;
+    const { title, description, email, teamMembers } = req.body;
+    // email checks
     // email checksx`
     let emailChecks = await RegisteredStudents.findOne({ email });
     if (emailChecks) {
@@ -18,6 +19,7 @@ exports.FormController = async (req, res) => {
       title,
       email, 
       description,
+      email,
       teamMembers,
     });
 
@@ -58,34 +60,36 @@ exports.FormGetController = async (req, res) => {
 exports.LoginController = async (req, res) => {
   try {
     const { email } = req.body;
-    const emailExisting = await RegisteredStudents.findOne({ email: email });
-    // fetch the data from the useres
-    //validation on email and password
+    // Check if email is provided
     if (!email) {
       return res.status(400).json({
         success: false,
-        message: "PLease fill all the details carefully",
+        message: "Please provide an email address.",
       });
     }
+    // Check if the user is registered
+    const existingStudent = await RegisteredStudents.findOne({ email: email });
+    if (!existingStudent) {
     //if not a registered user
     if (!emailExisting) {
       return res.status(401).json({
         success: false,
-        message: "your email is not registered",
+        message: "This email is not registered.",
       });
     }
-    const loginData = RegisteredStudents.create({ email });
-    // passed the response here so we get like
+    // Successful login
     res.status(200).json({
       success: true,
-      data: loginData,
-      message: "Login succesful !",
-    });
-  } catch (er) {
+      data: existingStudent,
+      message: "Login successful!",
+    })
+  };
+  }catch (err) {
     res.status(500).json({
       success: false,
-      message: "Internal server error !",
-      Error: er.message,
+      message: "Internal server error.",
+      error: err.message,
     });
   }
 };
+
