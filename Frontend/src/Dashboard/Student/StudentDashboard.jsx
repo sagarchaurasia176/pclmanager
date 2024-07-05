@@ -1,136 +1,124 @@
-import React, { useState } from 'react';
-import { FaSignOutAlt } from 'react-icons/fa'; // Import FontAwesome icon
-
+import React, { useEffect, useState } from "react";
+import { FaSignOutAlt } from "react-icons/fa";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+// student Dashboard page apply here so we gets
 const StudentDashboard = () => {
-  const [activeSection, setActiveSection] = useState('marks'); // State to manage active section
+  // const [activeSection, setActiveSection] = useState("marks");
+  const [studentGet, setStudentGet] = useState([]);
+  // Using useNavigate from react-router-dom for navigation
+  const moveBack = useNavigate();
 
-  const student = {
-    name: 'John Doe',
-    usn: '123456',
-    email: 'john.doe@example.com',
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/StudentRoutes/StudentData"
+        );
+        console.log(response.data.data[0]);
+        setStudentGet(response.data.data[0]);
+      } catch (error) {
+        toast.error("Internal error!", error);
+      }
+    };
 
-  const teamMembers = [
-    { name: 'Alice Smith', usn: '654321' },
-    { name: 'Bob Johnson', usn: '789012' },
-    { name: 'Charlie Brown', usn: '123789' },
-    { name: 'Dana White', usn: '456012' },
-    { name: 'Eve Black', usn: '789654' },
-  ];
-
-  const projectDetails = {
-    title: 'AI-Based Learning Platform',
-    description: 'A platform that leverages AI to provide personalized learning experiences.',
-    guide: 'Dr. Jane Roe',
-  };
-
-  const marks = [
-    { subject: 'Math', midterm: 85, final: 90 },
-    { subject: 'Science', midterm: 88, final: 92 },
-    { subject: 'History', midterm: 82, final: 89 },
-  ];
+    fetchData();
+  }, []);
 
   const handleLogout = () => {
-    alert('Logging out...');
-    // Implement actual logout functionality here
+    alert("are you sure to logout !");
+    moveBack("/"); // Redirect to the home page or login page
   };
 
   return (
     <div className="min-h-screen p-6 flex flex-col bg-gradient-to-r from-gray-700 via-gray-800 to-blue-500 text-white">
       <header className="bg-blue-600 text-white p-4 rounded-md mb-6 shadow-lg flex justify-between items-center">
-        <h1 className="text-2xl font-bold">ERP Dashboard for PCL</h1>
+        <h1 className="text-2xl font-bold">ERP-Student Portal</h1>
         <div className="flex items-center space-x-4">
-          <button className="bg-green-500 p-2 rounded-md hover:bg-green-400">
-            Meeting
-          </button>
-          <span className="font-bold">{student.name}</span>
-        </div>
-      </header>
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold">Hello, {student.name}! Welcome back!</h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
-        <section className="bg-gray-900 p-6 rounded-md shadow-md transform transition duration-300 hover:scale-105 hover:bg-gray-800">
-          <h2 className="text-xl font-semibold text-blue-400 mb-4">Student Details</h2>
-          <p className="font-bold"><strong>Name:</strong> {student.name}</p>
-          <p className="font-bold"><strong>USN:</strong> {student.usn}</p>
-          <p className="font-bold"><strong>Email:</strong> {student.email}</p>
-        </section>
-        <section className="bg-gray-900 p-6 rounded-md shadow-md transform transition duration-300 hover:scale-105 hover:bg-gray-800">
-          <h2 className="text-xl font-semibold text-blue-400 mb-4">Quick Links</h2>
-          <div className="flex space-x-4">
-            <button 
-              onClick={() => setActiveSection('marks')} 
-              className={`p-2 rounded-md ${activeSection === 'marks' ? 'bg-blue-500' : 'bg-gray-700'}`}
-            >
+          <div className="flex items-center space-x-2">
+            <button className=" bg-orange-400 p-2 rounded-md">
               View Marks
             </button>
-            <button 
-              onClick={() => setActiveSection('team')} 
-              className={`p-2 rounded-md ${activeSection === 'team' ? 'bg-blue-500' : 'bg-gray-700'}`}
-            >
-              View Team
+            <button className=" bg-slate-900 p-3 rounded-lg">
+              Meeting With Guide
             </button>
           </div>
-          {activeSection === 'marks' ? (
-            <div className="mt-4">
-              <h3 className="text-lg font-bold mb-2">Marks</h3>
-              <table className="min-w-full bg-gray-800 rounded-md overflow-hidden">
-                <thead>
-                  <tr>
-                    <th className="py-2 px-4 bg-gray-700">Subject</th>
-                    <th className="py-2 px-4 bg-gray-700">Midterm</th>
-                    <th className="py-2 px-4 bg-gray-700">Final</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {marks.map((mark, index) => (
-                    <tr key={index} className="text-center">
-                      <td className="py-2 px-4 border-b border-gray-600">{mark.subject}</td>
-                      <td className="py-2 px-4 border-b border-gray-600">{mark.midterm}</td>
-                      <td className="py-2 px-4 border-b border-gray-600">{mark.final}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div className="mt-4">
-              <h3 className="text-lg font-bold mb-2">Team Members</h3>
+        </div>
+      </header>
+
+      <div className="mb-6">
+        <h2 className="text-1xl ">
+          <p>
+            Project Centric Learning is a powerful tool for students to work in
+            areas of their choice and strengths.
+          </p>
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+        {/* Section for displaying team members in a table */}
+        <section className="bg-gray-900 p-6 rounded-md shadow-md ">
+          <h2 className="text-xl font-semibold text-blue-400 mb-4">
+            Team Members
+          </h2>
+          <div className="mt-4">
+            {/* Check if team members data exists and render table */}
+            {studentGet && studentGet.teamMembers && (
               <table className="min-w-full bg-gray-800 rounded-md overflow-hidden">
                 <thead>
                   <tr>
                     <th className="py-2 px-4 bg-gray-700">Name</th>
                     <th className="py-2 px-4 bg-gray-700">USN</th>
+                    <th className="py-2 px-4 bg-gray-700">Role</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {teamMembers.map((member, index) => (
+                  {/* Map through team members and render rows */}
+                  {studentGet.teamMembers.map((member, index) => (
                     <tr key={index} className="text-center">
-                      <td className="py-2 px-4 border-b border-gray-600">{member.name}</td>
-                      <td className="py-2 px-4 border-b border-gray-600">{member.usn}</td>
+                      <td className="py-2 px-4 border-b border-gray-600">
+                        {member.FullName}
+                      </td>
+                      <td className="py-2 px-4 border-b border-gray-600">
+                        {member.UsnNumber}
+                      </td>
+                      <td className="py-2 px-4 border-b border-gray-600">
+                        {member.role}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            )}
+          </div>
+        </section>
+
+        {/* Example section for displaying project details */}
+        <section className="bg-gray-900 p-6 rounded-md shadow-md  ">
+          <h2 className="text-xl font-semibold text-blue-400 mb-4">
+            Project Details
+          </h2>
+          {/* Display project details based on fetched data */}
+          {studentGet && (
+            <div className=" uppercase  block  pl-8">
+              <p className=" text-white  ">
+                Title :<p className=" uppercase">{studentGet.title}</p>
+              </p>
+              <br></br>
+              <p>Project Id:</p>
+              <span>{studentGet.description}</span>
+
+              {/* Add more details as needed */}
             </div>
           )}
         </section>
-        <section className="bg-gray-900 p-6 rounded-md shadow-md transform transition duration-300 hover:scale-105 hover:bg-gray-800">
-          <h2 className="text-xl font-semibold text-blue-400 mb-4">Project Details</h2>
-          <p className="font-bold"><strong>Title:</strong> {projectDetails.title}</p>
-          <p className="font-bold"><strong>Description:</strong> {projectDetails.description}</p>
-          <p className="font-bold"><strong>Supervisor:</strong> {projectDetails.guide}</p>
-        </section>
       </div>
+
       <footer className="bg-blue-600 text-white p-4 rounded-md mt-6 shadow-lg flex justify-between items-center">
         <div className="text-center">
-          <p className="font-semibold">© 2024 PCL ERP</p>
-          <p className="mt-2">
-            Designed with 💖 by <span className="text-yellow-400">Web Champs</span>
-          </p>
+          <p className="font-semibold ">© 2024 PCL ERP</p>
         </div>
-        <button 
+        <button
           onClick={handleLogout}
           className="bg-red-600 text-white p-3 rounded-full shadow-lg flex items-center space-x-2 transform transition duration-300 hover:bg-red-500"
         >
