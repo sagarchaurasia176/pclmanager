@@ -6,16 +6,18 @@ exports.FormController = async (req, res) => {
     // destruct the data first
     const { title, description, email, teamMembers } = req.body;
     // email checks
+    // email checksx`
     let emailChecks = await RegisteredStudents.findOne({ email });
     if (emailChecks) {
       return res.status(401).json({
         success: false,
-        message: "email already exist !",
+        message: "email is already existed",
       });
     }
     //otherwise create the data here
     const formStoredLogic = await RegisteredStudents.create({
       title,
+      email, 
       description,
       email,
       teamMembers,
@@ -35,11 +37,11 @@ exports.FormController = async (req, res) => {
   }
 };
 
-// receive data get the data of student
+// receive data get the data of student into student table
 exports.FormGetController = async (req, res) => {
   try {
     // create the field in db
-    const formStoredLogic = await RegisteredStudents.find();
+    const formStoredLogic = await RegisteredStudents.find({});
     res.status(200).json({
       success: true,
       data: formStoredLogic,
@@ -54,6 +56,7 @@ exports.FormGetController = async (req, res) => {
   }
 };
 
+// login controller apply here throught secret project code here
 exports.LoginController = async (req, res) => {
   try {
     const { email } = req.body;
@@ -67,6 +70,8 @@ exports.LoginController = async (req, res) => {
     // Check if the user is registered
     const existingStudent = await RegisteredStudents.findOne({ email: email });
     if (!existingStudent) {
+    //if not a registered user
+    if (!emailExisting) {
       return res.status(401).json({
         success: false,
         message: "This email is not registered.",
@@ -77,8 +82,9 @@ exports.LoginController = async (req, res) => {
       success: true,
       data: existingStudent,
       message: "Login successful!",
-    });
-  } catch (err) {
+    })
+  };
+  }catch (err) {
     res.status(500).json({
       success: false,
       message: "Internal server error.",
@@ -86,3 +92,4 @@ exports.LoginController = async (req, res) => {
     });
   }
 };
+

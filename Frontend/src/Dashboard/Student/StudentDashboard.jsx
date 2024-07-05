@@ -91,8 +91,6 @@ const StudentDashboard = () => {
           )}
         </section>
 
-        
-
         {/* Example section for displaying project details */}
         <section className="bg-gray-900 p-6 rounded-md shadow-md  ">
           <h2 className="text-xl font-semibold text-blue-400 mb-4">
@@ -111,7 +109,6 @@ const StudentDashboard = () => {
                   <span>{studentGet.description}</span>
                 </p>
               </p>
-
               {/* Add more details as needed */}
             </div>
           )}

@@ -4,6 +4,7 @@ import LoginAuth from "./auth/log/LoginAuth";
 import { Routes, Route } from "react-router-dom";
 import RegisterStudentUi from "./auth/constant/RegisterStudentUi";
 import StudentDashboard from "./Dashboard/Student/StudentDashboard";
+import MeetingUi from "./Dashboard/Student/Meeting/MeetingUi";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<LoginAuth />}></Route>
         <Route path="/PclRegister" element={<RegisterStudentUi />}></Route>
         <Route path="/Student-Dashboard" element={<StudentDashboard />}></Route>
+        <Route path="/meeting" element={<MeetingUi />}></Route>
       </Routes>
     </>
   );
