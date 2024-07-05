@@ -3,8 +3,7 @@ import StudentLogin from "./StudentLogin";
 import TeacherLogin from "./TeacherLogin";
 import toast from "react-hot-toast";
 import ShapeDivider from "../../Shape/ShapeDivider";
-import logo from "../../img/Logo.png";
-
+import Logo from "../../img/Logo.png";
 
 const LoginAuth = () => {
   const [AccountType, setAccountType] = useState("Student");
@@ -26,7 +25,7 @@ const LoginAuth = () => {
        bg-white rounded-lg shadow-md dark:bg-gray-800"
       >
         <div className="flex  justify-center mx-auto">
-          <img className=" w-[10rem]" src={logo} alt="" />
+          <img className=" w-[10rem]" src={Logo} alt="" />
         </div>
 
         <div className=" flex justify-center space-x-4 ">

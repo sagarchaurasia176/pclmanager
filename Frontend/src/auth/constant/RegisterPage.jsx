@@ -3,7 +3,7 @@ import { BranchName } from "../../Api/BranchName";
 import { chooseOptions } from "../../Api/LeaderMember";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 
 const RegisterPage = () => {
   const generateYears = (startYear, endYear) => {
@@ -22,11 +22,7 @@ const RegisterPage = () => {
   const [formValid, setValid] = useState({
     title: "",
     description: "",
-    ConferencePaper: false,
-    JournalPatent: false,
-    Prototype: false,
     email: "",
-
     teamMembers: [
       {
         FullName: "",
@@ -53,17 +49,20 @@ const RegisterPage = () => {
       setValid({ ...formValid, [name]: type === "checkbox" ? checked : value });
     }
   };
-  
-  
+
   const studentDatas = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/StudentRoutes/FormController', formValid, {
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axios.post(
+        "http://localhost:8000/StudentRoutes/FormController",
+        formValid,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
-  
+      );
+
       toast.success("Form submitted successfully!");
       moveToLoging("/");
       console.log(response.data);
@@ -71,7 +70,9 @@ const RegisterPage = () => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        toast.error(`Error: ${error.response.data.message || "Something went wrong"}`);
+        toast.error(
+          `Error: ${error.response.data.message || "Something went wrong"}`
+        );
         console.error("Error in form submission", error.response.data);
       } else if (error.request) {
         // The request was made but no response was received
@@ -84,36 +85,7 @@ const RegisterPage = () => {
       }
     }
   };
-  
-  // const studentDatas = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = axios.post('http://localhost:8000/StudentRoutes/FormController')
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(formValid),
-  //       }
-  //     );
 
-  //     if (!response.ok) {
-  //       const errorData = await response.json();
-  //       throw new Error(errorData.message || "Something went wrong");
-  //     } else {
-  //       const result = await response.json();
-  //       toast.success("Form submitted successfully!");
-  //       moveToLoging("/");
-  //       console.log(result);
-  //     }
-  //   } catch (error) {
-  //     toast.error(`Error: ${error.message}`);
-  //     console.error("Error in form submission", error);
-  //   }
-  // };
-
-  // add form button apply here
   const addMember = () => {
     setValid({
       ...formValid,
@@ -150,7 +122,7 @@ const RegisterPage = () => {
             className="block cursor-pointer w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
-
+        <br />
         <div>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
             Short project descriptions
@@ -165,60 +137,7 @@ const RegisterPage = () => {
             className="block w-full cursor-pointer px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
-
         <br />
-        <label className=" mb-2 text-sm text-white">Expected Outcomes</label>
-        <div className=" flex flex-wrap text-white">
-          <div className="p-6">
-            <div className="space-y-4">
-              <label className="flex text-white items-center">
-                <input
-                  type="checkbox"
-                  name="ConferencePaper"
-                  onChange={formtHandler}
-                  checked={formValid.ConferencePaper}
-                  className="form-checkbox cursor-pointer h-5 w-5 text-blue-600"
-                />
-                <span className="ml-2 text-white">Conference Paper</span>
-              </label>
-
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="JournalPatent"
-                  checked={formValid.JournalPatent}
-                  onChange={formtHandler}
-                  className="form-checkbox cursor-pointer h-5 w-5 text-blue-600"
-                />
-                <span className="ml-2 text-white">Journal Patent</span>
-              </label>
-
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="Prototype"
-                  checked={formValid.Prototype}
-                  onChange={formtHandler}
-                  className="form-checkbox cursor-pointer h-5 w-5 text-blue-600"
-                />
-                <span className="ml-2 text-white">Prototype</span>
-              </label>
-            </div>
-          </div>
-        </div>
-        <br />
-
-        <label className="text-gray-600 dark:text-gray-200">
-          Batch Members
-        </label>
-        <div className=" mt-2 flex justify-end gap-6">
-          <button
-            onClick={() => addMember()}
-            className="bg-slate-800  text-white p-2 rounded-md mb-4"
-          >
-            Add Member
-          </button>
-        </div>
 
         {/* email and password */}
         <div>
@@ -235,7 +154,21 @@ const RegisterPage = () => {
             className="block w-full cursor-pointer px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
+        <br />
+
         {/* email and password */}
+
+        <label className="text-gray-600 dark:text-gray-200">
+          Batch Members
+        </label>
+        <div className=" mt-2 flex justify-end gap-6">
+          <button
+            onClick={() => addMember()}
+            className="bg-slate-800  text-white p-2 rounded-md mb-4"
+          >
+            Add Member
+          </button>
+        </div>
 
         <br />
         {formValid.teamMembers.map((member, index) => (
