@@ -65,6 +65,7 @@ const RegisterPage = () => {
         }
       );
       toast.success("Form submitted successfully!");
+      moveToLoging()
       console.log(response.data);
     } catch (error) {
       if (error.response) {

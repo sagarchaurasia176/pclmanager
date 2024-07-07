@@ -1,7 +1,14 @@
 import React from "react";
 import { MdDoubleArrow } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+
 
 const TeacherLogin = () => {
+  const nav =  useNavigate()
+  const moveToAdmin = ()=>{
+      nav("/admin/dashboard")
+  }
+
   return (
     <div>
       <form>
@@ -23,7 +30,9 @@ const TeacherLogin = () => {
           />
         </div>
         <br></br>
-        <button class="px-6 w-full py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+        <button
+          onClick={()=>moveToAdmin()}
+        class="px-6 w-full py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
           Login
         </button>
         <span className=" mt-3 text-center justify-center flex">OR</span>
