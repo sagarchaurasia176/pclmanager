@@ -17,7 +17,6 @@ exports.FormController = async (req, res) => {
     //otherwise create the data here
     const formStoredLogic = await RegisteredStudents.create({
       title,
-      email, 
       description,
       email,
       teamMembers,
@@ -41,7 +40,7 @@ exports.FormController = async (req, res) => {
 exports.FormGetController = async (req, res) => {
   try {
     // create the field in db
-    const formStoredLogic = await RegisteredStudents.find({});
+    const formStoredLogic = await RegisteredStudents.find();
     res.status(200).json({
       success: true,
       data: formStoredLogic,
@@ -70,21 +69,21 @@ exports.LoginController = async (req, res) => {
     // Check if the user is registered
     const existingStudent = await RegisteredStudents.findOne({ email: email });
     if (!existingStudent) {
-    //if not a registered user
-    if (!emailExisting) {
-      return res.status(401).json({
-        success: false,
-        message: "This email is not registered.",
+      //if not a registered user
+      if (!emailExisting) {
+        return res.status(401).json({
+          success: false,
+          message: "This email is not registered.",
+        });
+      }
+      // Successful login
+      res.status(200).json({
+        success: true,
+        data: existingStudent,
+        message: "Login successful!",
       });
     }
-    // Successful login
-    res.status(200).json({
-      success: true,
-      data: existingStudent,
-      message: "Login successful!",
-    })
-  };
-  }catch (err) {
+  } catch (err) {
     res.status(500).json({
       success: false,
       message: "Internal server error.",
@@ -92,4 +91,3 @@ exports.LoginController = async (req, res) => {
     });
   }
 };
-

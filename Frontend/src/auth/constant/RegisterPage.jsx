@@ -16,7 +16,12 @@ const RegisterPage = () => {
 
   const currentYear = new Date().getFullYear();
   const years = generateYears(2020, currentYear);
-  const loginHandlers = useNavigate();
+  const moveToLogings = useNavigate();
+
+  // handler functions
+  const moveToLoging = () => {
+    moveToLogings("/");
+  };
 
   const [formValid, setValid] = useState({
     title: "",
@@ -52,23 +57,17 @@ const RegisterPage = () => {
   const studentDatas = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8000/StudentRoutes/FormController",
-        formValid,
+      const response = await axios.post("http://localhost:8000/StudentRoutes/Registered",formValid,
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-
       toast.success("Form submitted successfully!");
-      moveToLoging("/");
       console.log(response.data);
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         toast.error(
           `Error: ${error.response.data.message || "Something went wrong"}`
         );
