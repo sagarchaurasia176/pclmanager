@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import AdminPanel from './AdminPanel'; // Import your AdminPanel component
-import GuideAllocation from './GuideAllocation'; // Import your GuideAllocation component
-import DashAd from './DashAd'; // Import your DashAd component
+import React, { useState } from "react";
 
 const AdminDashboard = () => {
   const [activeComponent, setActiveComponent] = useState(null); // State to manage active component
@@ -17,17 +14,23 @@ const AdminDashboard = () => {
         {/* Navbar */}
         <div className="navbar bg-base-300 w-full">
           <div className="flex-none lg:hidden">
-            <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
+            <label
+              htmlFor="my-drawer-3"
+              aria-label="open sidebar"
+              className="btn btn-square btn-ghost"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                className="inline-block h-6 w-6 stroke-current">
+                className="inline-block h-6 w-6 stroke-current"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"></path>
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
               </svg>
             </label>
           </div>
@@ -37,7 +40,7 @@ const AdminDashboard = () => {
               <li>
                 <button
                   className="nav-link"
-                  onClick={() => handleComponentChange('AdminPanel')}
+                  onClick={() => handleComponentChange("AdminPanel")}
                 >
                   Admin Panel
                 </button>
@@ -45,7 +48,7 @@ const AdminDashboard = () => {
               <li>
                 <button
                   className="nav-link"
-                  onClick={() => handleComponentChange('GuideAllocation')}
+                  // onClick={() => handleComponentChange("GuideAllocation")}
                 >
                   Guide Allocation
                 </button>
@@ -53,7 +56,7 @@ const AdminDashboard = () => {
               <li>
                 <button
                   className="nav-link"
-                  onClick={() => handleComponentChange('DashAd')}
+                  // onClick={() => handleComponentChange("DashAd")}
                 >
                   Dashboard
                 </button>
@@ -61,12 +64,7 @@ const AdminDashboard = () => {
             </ul>
           </div>
         </div>
-        {/* Page content here */}
-        <div className="p-4">
-          {activeComponent === 'AdminPanel' && <AdminPanel />}
-          {activeComponent === 'GuideAllocation' && <GuideAllocation />}
-          {activeComponent === 'DashAd' && <DashAd />}
-        </div>
+       
       </div>
     </div>
   );
